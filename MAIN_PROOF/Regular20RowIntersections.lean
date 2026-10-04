@@ -1,4 +1,8 @@
-import Regular20Twins
+module
+
+public import Regular20Twins
+
+@[expose] public section
 
 namespace CoveringMatrixRegular20
 open Covering Covering.PointSplit Covering.PointDegree Covering.TwoPointSplit Covering.SideLift

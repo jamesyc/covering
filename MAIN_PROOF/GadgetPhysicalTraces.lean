@@ -1,6 +1,10 @@
-import GadgetSlotPartition
-import Regular20Twins
-import A19GadgetInterface
+module
+
+public import GadgetSlotPartition
+public import Regular20Twins
+public import A19GadgetInterface
+
+@[expose] public section
 
 open Finset
 open scoped BigOperators

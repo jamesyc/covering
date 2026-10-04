@@ -1,4 +1,8 @@
-import Foundations.Capacity
+module
+
+public import Foundations.Capacity
+
+@[expose] public section
 
 namespace Covering.PointSplit
 

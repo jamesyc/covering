@@ -1,4 +1,8 @@
-import campaigns.async_goal.lean.recovered.CrossGridRecoveredV1
+module
+
+public import campaigns.async_goal.lean.recovered.CrossGridRecoveredV1
+
+@[expose] public section
 
 /-! New reconstruction, not the previously accepted CrossGridThreeV3 bytes. -/
 namespace Covering.CrossGrid

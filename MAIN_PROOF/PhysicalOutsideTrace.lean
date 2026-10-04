@@ -1,6 +1,10 @@
-import Mathlib.Algebra.BigOperators.Fin
-import Mathlib.Data.Fintype.EquivFin
-import FormalResume20261003.Regular22TwoProviderV1
+module
+
+public import Mathlib.Algebra.BigOperators.Fin
+public import Mathlib.Data.Fintype.EquivFin
+public import FormalResume20261003.Regular22TwoProviderV1
+
+@[expose] public section
 
 open Finset
 open scoped BigOperators

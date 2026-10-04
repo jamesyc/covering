@@ -1,4 +1,8 @@
-import campaigns.async_goal.lean.d0.WeightedProviderV2
+module
+
+public import campaigns.async_goal.lean.d0.WeightedProviderV2
+
+@[expose] public section
 
 /-! Physical clique-incidence obstructions for the degree-four twin-cap proof.
 This module proves only the graph stage, not the full multiplicity-six bound.

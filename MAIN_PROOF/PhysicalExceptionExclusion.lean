@@ -1,4 +1,9 @@
-import BalancedSidesObstruction
+module
+
+public import BalancedSidesObstruction
+
+@[expose] public section
+
 open Matrix Finset
 open scoped BigOperators
 namespace Covering.NormalizedBridge20261003.ExceptionBranch

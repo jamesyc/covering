@@ -1,6 +1,10 @@
-import rounds.round_06.lean.PointSplit
-import rounds.round_06.theory.PointDegree
-import Statements.Target
+module
+
+public import rounds.round_06.lean.PointSplit
+public import rounds.round_06.theory.PointDegree
+public import Statements.Target
+
+@[expose] public section
 
 namespace Covering.PointSplit
 

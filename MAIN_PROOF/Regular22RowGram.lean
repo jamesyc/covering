@@ -1,5 +1,9 @@
-import Regular22RankConsequences
-import Regular22TwinBalance
+module
+
+public import Regular22RankConsequences
+public import Regular22TwinBalance
+
+@[expose] public section
 
 open Matrix Finset
 open scoped BigOperators

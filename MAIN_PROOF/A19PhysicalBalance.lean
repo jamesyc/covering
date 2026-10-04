@@ -1,4 +1,9 @@
-import A19WeightedFrontend
+module
+
+public import A19WeightedFrontend
+
+@[expose] public section
+
 open Matrix Finset
 open scoped BigOperators
 namespace Covering.NormalizedBridge20261003.A19Physical

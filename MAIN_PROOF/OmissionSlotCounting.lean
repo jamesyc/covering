@@ -1,7 +1,12 @@
-import Mathlib.Algebra.BigOperators.Fin
-import Mathlib.Data.List.OfFn
-import FormalResume20261003.SixPointTriplesV1
-import campaign_next15.lean.d0_lift.SlotPairsV2
+module
+
+public import Mathlib.Algebra.BigOperators.Fin
+public import Mathlib.Data.List.OfFn
+public import FormalResume20261003.SixPointTriplesV1
+public import campaign_next15.lean.d0_lift.SlotPairsV2
+
+@[expose] public section
+
 open Finset
 open scoped BigOperators
 namespace Covering.NormalizedBridge20261003.OmissionSlots

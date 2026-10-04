@@ -1,5 +1,10 @@
-import MatrixFoundation
-import Mathlib.Combinatorics.SimpleGraph.Connectivity.Finite
+module
+
+public import MatrixFoundation
+public import Mathlib.Combinatorics.SimpleGraph.Connectivity.Finite
+
+@[expose] public section
+
 open Matrix Finset
 open scoped BigOperators
 namespace WeightedSignlessKernel

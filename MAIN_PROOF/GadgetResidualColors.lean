@@ -1,5 +1,9 @@
-import PhysicalOutsideTrace
-import Mathlib.Algebra.Order.BigOperators.Group.Finset
+module
+
+public import PhysicalOutsideTrace
+public import Mathlib.Algebra.Order.BigOperators.Group.Finset
+
+@[expose] public section
 
 open Finset
 open scoped BigOperators

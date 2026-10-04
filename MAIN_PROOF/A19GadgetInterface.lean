@@ -1,5 +1,10 @@
-import A19ComponentParts
-import A19ComponentUnion
+module
+
+public import A19ComponentParts
+public import A19ComponentUnion
+
+@[expose] public section
+
 open Matrix Finset
 open scoped BigOperators
 namespace Covering.NormalizedBridge20261003.A19Physical

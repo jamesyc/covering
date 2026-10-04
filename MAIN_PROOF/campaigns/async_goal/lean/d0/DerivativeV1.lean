@@ -1,5 +1,9 @@
-import campaigns.async_goal.lean.PairLowerBoundV4
-import rounds.round_06.lean.PointSplit
+module
+
+public import campaigns.async_goal.lean.PairLowerBoundV4
+public import rounds.round_06.lean.PointSplit
+
+@[expose] public section
 
 namespace Covering.D0.Derivative
 

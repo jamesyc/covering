@@ -1,8 +1,12 @@
-import Mathlib.LinearAlgebra.Matrix.Rank
-import Mathlib.Basic.Real.Basic
-import Mathlib.Algebra.BigOperators.Fin
-import Mathlib.Data.List.OfFn
-import FormalResume20261003.Regular22TwoProviderV1
+module
+
+public import Mathlib.LinearAlgebra.Matrix.Rank
+public import Mathlib.Basic.Real.Basic
+public import Mathlib.Algebra.BigOperators.Fin
+public import Mathlib.Data.List.OfFn
+public import FormalResume20261003.Regular22TwoProviderV1
+
+@[expose] public section
 
 open Matrix Finset
 open scoped BigOperators

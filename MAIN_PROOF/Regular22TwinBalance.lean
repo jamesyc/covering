@@ -1,4 +1,8 @@
-import Regular22PhysicalRigidity
+module
+
+public import Regular22PhysicalRigidity
+
+@[expose] public section
 
 open Matrix Finset
 open scoped BigOperators

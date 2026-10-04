@@ -1,5 +1,9 @@
-import FormalResume20261003.PairFloorV1
-import FormalResume20261003.Regular22IncidenceV1
+module
+
+public import FormalResume20261003.PairFloorV1
+public import FormalResume20261003.Regular22IncidenceV1
+
+@[expose] public section
 
 namespace Covering.NormalizedBridge20261003.A19Physical
 open PointSplit PointDegree

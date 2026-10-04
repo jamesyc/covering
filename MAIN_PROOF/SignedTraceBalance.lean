@@ -1,5 +1,10 @@
-import TwinProviderTrace
-import OmissionSlotCounting
+module
+
+public import TwinProviderTrace
+public import OmissionSlotCounting
+
+@[expose] public section
+
 open Matrix Finset
 open scoped BigOperators
 namespace Covering.NormalizedBridge20261003.ExceptionBranch

@@ -1,4 +1,8 @@
-import campaigns.async_goal.lean.recovered.CrossGridRecoveredV1
+module
+
+public import campaigns.async_goal.lean.recovered.CrossGridRecoveredV1
+
+@[expose] public section
 
 /-! NEW RECOVERY COMPATIBILITY SHIM. The original source bytes at this module
 path are unavailable. This is not byte recovery and does not inherit the old

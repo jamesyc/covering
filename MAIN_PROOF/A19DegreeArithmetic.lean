@@ -1,4 +1,9 @@
-import MatrixFoundation
+module
+
+public import MatrixFoundation
+
+@[expose] public section
+
 open Finset
 open scoped BigOperators
 namespace A19DegreeArithmetic

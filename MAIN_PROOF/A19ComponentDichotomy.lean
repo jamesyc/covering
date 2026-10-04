@@ -1,5 +1,10 @@
-import A19TwoTwinGadget
-import ComponentOrderDichotomy
+module
+
+public import A19TwoTwinGadget
+public import ComponentOrderDichotomy
+
+@[expose] public section
+
 open Matrix Finset
 open scoped BigOperators
 namespace Covering.NormalizedBridge20261003.A19Physical

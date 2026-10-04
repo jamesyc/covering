@@ -1,4 +1,8 @@
-import SmallCutColorConsequence
+module
+
+public import SmallCutColorConsequence
+
+@[expose] public section
 
 /-! Canonical deletion of all quotient classes meeting either high physical
 point, using the same physical pairing equivalence throughout. -/

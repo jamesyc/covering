@@ -1,4 +1,9 @@
-import ProviderSides
+module
+
+public import ProviderSides
+
+@[expose] public section
+
 open Matrix Finset
 open scoped BigOperators
 namespace Covering.NormalizedBridge20261003.ExceptionBranch

@@ -1,4 +1,9 @@
-import SignedTraceBalance
+module
+
+public import SignedTraceBalance
+
+@[expose] public section
+
 open Matrix Finset
 open scoped BigOperators
 namespace Covering.NormalizedBridge20261003.ExceptionBranch

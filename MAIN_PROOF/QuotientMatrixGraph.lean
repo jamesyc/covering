@@ -1,8 +1,12 @@
-import Mathlib.Combinatorics.SimpleGraph.AdjMatrix
-import Mathlib.Basic.Real.Basic
-import Mathlib.Tactic.Linarith
-import Mathlib.Tactic.Ring
-import SmallCutConnectivity
+module
+
+public import Mathlib.Combinatorics.SimpleGraph.AdjMatrix
+public import Mathlib.Basic.Real.Basic
+public import Mathlib.Tactic.Linarith
+public import Mathlib.Tactic.Ring
+public import SmallCutConnectivity
+
+@[expose] public section
 
 /-! A spectrum-free consumer from concrete quotient H-matrix identities to
 an actual cubic graph and its exact common-neighbor conditions. -/

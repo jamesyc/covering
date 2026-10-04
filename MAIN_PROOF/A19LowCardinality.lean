@@ -1,4 +1,9 @@
-import A19PhysicalCounts
+module
+
+public import A19PhysicalCounts
+
+@[expose] public section
+
 open Finset
 open scoped BigOperators
 namespace Covering.NormalizedBridge20261003.A19Physical

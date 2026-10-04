@@ -1,5 +1,10 @@
-import Mathlib.LinearAlgebra.Matrix.Rank
-import Mathlib.Analysis.Matrix.Spectrum
+module
+
+public import Mathlib.LinearAlgebra.Matrix.Rank
+public import Mathlib.Analysis.Matrix.Spectrum
+
+@[expose] public section
+
 open Matrix Finset
 open scoped BigOperators
 namespace MatrixFoundation

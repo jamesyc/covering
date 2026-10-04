@@ -1,6 +1,10 @@
-import Regular22MatrixRows
-import PhysicalIncidenceMatrix
-import RowSumFactorization
+module
+
+public import Regular22MatrixRows
+public import PhysicalIncidenceMatrix
+public import RowSumFactorization
+
+@[expose] public section
 
 open Matrix Finset
 open scoped BigOperators

@@ -1,4 +1,8 @@
-import rounds.round_06.lean.GlobalTarget
+module
+
+public import rounds.round_06.lean.GlobalTarget
+
+@[expose] public section
 
 namespace Covering.TwoPointSplit
 

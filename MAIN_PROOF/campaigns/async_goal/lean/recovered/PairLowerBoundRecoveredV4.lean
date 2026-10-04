@@ -1,4 +1,8 @@
-import campaigns.async_goal.lean.recovered.CrossGridThreeRecoveredV3
+module
+
+public import campaigns.async_goal.lean.recovered.CrossGridThreeRecoveredV3
+
+@[expose] public section
 
 /-! New reconstruction after workspace loss. Original PairLowerBoundV4 is not
 recovered. This source needs a new bounded build and independent review. -/

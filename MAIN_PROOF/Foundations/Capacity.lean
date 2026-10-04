@@ -1,4 +1,8 @@
-import Foundations.Shadow
+module
+
+public import Foundations.Shadow
+
+@[expose] public section
 
 namespace Covering
 

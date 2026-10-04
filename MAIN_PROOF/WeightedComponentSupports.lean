@@ -1,5 +1,10 @@
-import WeightedKernelIncidence
-import Mathlib.Algebra.BigOperators.Group.Finset.Lemmas
+module
+
+public import WeightedKernelIncidence
+public import Mathlib.Algebra.BigOperators.Group.Finset.Lemmas
+
+@[expose] public section
+
 open Matrix Finset
 open scoped BigOperators
 namespace WeightedKernelComponents.System

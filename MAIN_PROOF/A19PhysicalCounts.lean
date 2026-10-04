@@ -1,7 +1,12 @@
-import MatrixFoundation
-import Mathlib.Algebra.BigOperators.Fin
-import A19PhysicalFloors
-import A19DegreeArithmetic
+module
+
+public import MatrixFoundation
+public import Mathlib.Algebra.BigOperators.Fin
+public import A19PhysicalFloors
+public import A19DegreeArithmetic
+
+@[expose] public section
+
 open Finset
 open scoped BigOperators
 namespace Covering.NormalizedBridge20261003.A19Physical

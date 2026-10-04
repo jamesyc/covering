@@ -1,5 +1,9 @@
-import FormalResume20261003.Regular22MatchingV1
-import FormalResume20261003.SixPointTriplesV1
+module
+
+public import FormalResume20261003.Regular22MatchingV1
+public import FormalResume20261003.SixPointTriplesV1
+
+@[expose] public section
 
 /-! Physical incidence inputs for the separate regular22 matrix argument.
 No linear-algebra or spectral conclusion is asserted in this module. -/

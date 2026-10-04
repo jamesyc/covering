@@ -1,4 +1,8 @@
-import Mathlib.Combinatorics.SimpleGraph.Connectivity.Connected
+module
+
+public import Mathlib.Combinatorics.SimpleGraph.Connectivity.Connected
+
+@[expose] public section
 
 /-!
 A local, census-free connectivity theorem. The proof explicitly reroutes a walk

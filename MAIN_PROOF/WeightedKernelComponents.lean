@@ -1,4 +1,9 @@
-import WeightedSignlessKernel
+module
+
+public import WeightedSignlessKernel
+
+@[expose] public section
+
 open Matrix Finset
 open scoped BigOperators
 namespace WeightedKernelComponents

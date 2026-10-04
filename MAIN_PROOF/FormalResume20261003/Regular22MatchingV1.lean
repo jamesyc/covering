@@ -1,5 +1,9 @@
-import FormalResume20261003.LowPairProfileV1
-import campaign_next15.lean.d0_lift.SlotPairsV2
+module
+
+public import FormalResume20261003.LowPairProfileV1
+public import campaign_next15.lean.d0_lift.SlotPairsV2
+
+@[expose] public section
 
 /-! Elementary physical matching lemma. The proof splits actual row slots at
 three distinct points and uses the 9 by 10 cross-grid obstruction. It has no

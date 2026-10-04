@@ -1,6 +1,11 @@
-import A19LowCardinality
-import PhysicalIncidenceMatrix
-import WeightedKernelIncidence
+module
+
+public import A19LowCardinality
+public import PhysicalIncidenceMatrix
+public import WeightedKernelIncidence
+
+@[expose] public section
+
 open Matrix Finset
 open scoped BigOperators
 namespace Covering.NormalizedBridge20261003.A19Physical

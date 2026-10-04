@@ -1,4 +1,8 @@
-import campaigns.async_goal.lean.twin_cap.CliqueIncidenceV2
+module
+
+public import campaigns.async_goal.lean.twin_cap.CliqueIncidenceV2
+
+@[expose] public section
 
 /-! A spectral-free component only. Nothing here proves the Gram, rank,
 regular-completion rigidity, or global nineteen-row exclusion arguments. -/

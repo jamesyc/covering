@@ -1,5 +1,10 @@
-import WeightedKernelGram
-import WeightedKernelClassification
+module
+
+public import WeightedKernelGram
+public import WeightedKernelClassification
+
+@[expose] public section
+
 open Matrix Finset
 open scoped BigOperators
 namespace WeightedKernelComponents.System

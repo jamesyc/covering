@@ -1,8 +1,12 @@
 /- Concrete end-to-end composition from the actual exceptional and gadget branches.
 All numerical endpoints take only original physical row-validity and covering premises. -/
-import PhysicalExceptionExclusion
-import GadgetExclusion
-import FinalLowerBoundWrappers
+module
+
+public import PhysicalExceptionExclusion
+public import GadgetExclusion
+public import FinalLowerBoundWrappers
+
+@[expose] public section
 
 namespace Covering.FinalCoveringBounds
 open NormalizedBridge20261003.A19Physical

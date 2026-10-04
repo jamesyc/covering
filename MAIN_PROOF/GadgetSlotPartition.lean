@@ -1,4 +1,8 @@
-import PhysicalOutsideTrace
+module
+
+public import PhysicalOutsideTrace
+
+@[expose] public section
 
 namespace CoveringGadgetTrace
 open Covering Covering.PointDegree Covering.SideLift

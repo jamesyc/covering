@@ -1,6 +1,10 @@
-import PhysicalIncidenceMatrix
-import QuotientMatrixGraph
-import Mathlib.Algebra.BigOperators.Fin
+module
+
+public import PhysicalIncidenceMatrix
+public import QuotientMatrixGraph
+public import Mathlib.Algebra.BigOperators.Fin
+
+@[expose] public section
 
 /-! The actual quotient matrix of an H family, using the canonical physical
 incidence adapter and one common physical pairing equivalence. -/

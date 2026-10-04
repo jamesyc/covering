@@ -1,4 +1,8 @@
-import Statements.Model
+module
+
+public import Statements.Model
+
+@[expose] public section
 
 namespace Covering
 

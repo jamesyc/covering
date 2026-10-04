@@ -1,5 +1,9 @@
-import rounds.round_05.theory.WeightedCounting
-import Foundations.Relabel
+module
+
+public import rounds.round_05.theory.WeightedCounting
+public import Foundations.Relabel
+
+@[expose] public section
 
 /-! A global incidence normalization: a small uniform family has a low-degree
 point. No candidate pool, symmetry, or fixed-row hypothesis is imposed. -/

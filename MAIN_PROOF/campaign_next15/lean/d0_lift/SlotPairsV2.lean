@@ -1,4 +1,8 @@
-import campaigns.async_goal.lean.d0.DerivativeV1
+module
+
+public import campaigns.async_goal.lean.d0.DerivativeV1
+
+@[expose] public section
 
 namespace Covering.SideLift
 

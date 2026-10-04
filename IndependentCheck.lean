@@ -1,5 +1,9 @@
-import FinalCoveringBounds
-import Mathlib.Data.Finset.Card
+module
+
+public import FinalCoveringBounds
+public import Mathlib.Data.Finset.Card
+
+@[expose] public section
 
 /-!
 Independent fidelity check, written outside the archived proof.

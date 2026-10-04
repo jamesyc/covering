@@ -1,4 +1,9 @@
-import WeightedComponentSupports
+module
+
+public import WeightedComponentSupports
+
+@[expose] public section
+
 open Finset
 open scoped BigOperators
 namespace ComponentOrderDichotomy

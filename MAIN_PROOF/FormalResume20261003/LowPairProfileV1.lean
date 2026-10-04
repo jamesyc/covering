@@ -1,5 +1,9 @@
-import FormalResume20261003.MatchingGridV1
-import FormalResume20261003.SlotDegreesV1
+module
+
+public import FormalResume20261003.MatchingGridV1
+public import FormalResume20261003.SlotDegreesV1
+
+@[expose] public section
 
 namespace Covering.NormalizedBridge20261003.Regular22Matching
 

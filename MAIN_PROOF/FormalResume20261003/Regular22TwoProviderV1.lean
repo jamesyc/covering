@@ -1,4 +1,8 @@
-import FormalResume20261003.Regular22IncidenceV1
+module
+
+public import FormalResume20261003.Regular22IncidenceV1
+
+@[expose] public section
 
 namespace Covering.NormalizedBridge20261003.Regular22Incidence
 

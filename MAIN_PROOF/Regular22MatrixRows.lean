@@ -1,4 +1,8 @@
-import MatrixFoundation
+module
+
+public import MatrixFoundation
+
+@[expose] public section
 
 open Matrix Finset
 open scoped BigOperators

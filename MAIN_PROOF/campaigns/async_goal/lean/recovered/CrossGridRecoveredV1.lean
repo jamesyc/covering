@@ -1,5 +1,9 @@
-import rounds.round_06.theory.PointDegree
-import Foundations.Capacity
+module
+
+public import rounds.round_06.theory.PointDegree
+public import Foundations.Capacity
+
+@[expose] public section
 
 /-! Newly reconstructed after workspace loss. This is not the frozen CrossGridV3
 source and has not inherited its prior acceptance. Fresh build/review required. -/

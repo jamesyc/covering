@@ -1,5 +1,10 @@
-import A19PhysicalBalance
-import WeightedComponentSupports
+module
+
+public import A19PhysicalBalance
+public import WeightedComponentSupports
+
+@[expose] public section
+
 open Matrix Finset
 open scoped BigOperators
 namespace Covering.NormalizedBridge20261003.A19Physical

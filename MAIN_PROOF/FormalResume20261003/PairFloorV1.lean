@@ -1,5 +1,9 @@
-import campaign_next15.lean.d0_lift.SlotPairsV2
-import FormalResume20261003.SlotDegreesV1
+module
+
+public import campaign_next15.lean.d0_lift.SlotPairsV2
+public import FormalResume20261003.SlotDegreesV1
+
+@[expose] public section
 
 /-! New reconstruction of the generic physical pair-floor proof. Historical
 post-archive acceptance is not evidence for this source until fresh checking. -/

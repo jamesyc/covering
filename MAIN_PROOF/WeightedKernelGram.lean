@@ -1,7 +1,12 @@
-import Mathlib.Algebra.Order.Star.Real
-import Mathlib.LinearAlgebra.Matrix.PosDef
-import WeightedKernelBalanced
-import RowSumFactorization
+module
+
+public import Mathlib.Algebra.Order.Star.Real
+public import Mathlib.LinearAlgebra.Matrix.PosDef
+public import WeightedKernelBalanced
+public import RowSumFactorization
+
+@[expose] public section
+
 open Matrix Finset
 open scoped BigOperators
 namespace WeightedKernelComponents.System

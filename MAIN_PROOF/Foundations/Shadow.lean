@@ -1,5 +1,9 @@
-import Statements.Shadow
-import Foundations.Basic
+module
+
+public import Statements.Shadow
+public import Foundations.Basic
+
+@[expose] public section
 
 namespace Covering
 

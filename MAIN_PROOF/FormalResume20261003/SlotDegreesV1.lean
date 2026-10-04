@@ -1,4 +1,8 @@
-import rounds.round_16.lean.TwoPointSplit
+module
+
+public import rounds.round_16.lean.TwoPointSplit
+
+@[expose] public section
 
 /-! New 2026-10-03 source. Generic physical slot-degree identities needed to
 retain actual common minimum pivots through the three exact point splits. -/

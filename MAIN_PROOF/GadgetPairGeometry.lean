@@ -1,6 +1,10 @@
-import GadgetPhysicalTraces
-import GadgetResidualColors
-import Regular20RowIntersections
+module
+
+public import GadgetPhysicalTraces
+public import GadgetResidualColors
+public import Regular20RowIntersections
+
+@[expose] public section
 
 open Finset
 open scoped BigOperators

@@ -1,4 +1,8 @@
-import Regular20Extension
+module
+
+public import Regular20Extension
+
+@[expose] public section
 
 namespace CoveringMatrixRegular20
 open Covering Covering.PointSplit Covering.PointDegree Covering.TwoPointSplit Covering.SideLift

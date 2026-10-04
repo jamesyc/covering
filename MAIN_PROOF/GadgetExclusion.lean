@@ -1,7 +1,11 @@
-import GadgetPairGeometry
-import PhysicalQuotientMatrix
-import InvolutionPairCoordinates
-import HighPointDeletion
+module
+
+public import GadgetPairGeometry
+public import PhysicalQuotientMatrix
+public import InvolutionPairCoordinates
+public import HighPointDeletion
+
+@[expose] public section
 
 open Finset
 open scoped BigOperators

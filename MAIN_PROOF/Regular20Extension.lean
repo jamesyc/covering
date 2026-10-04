@@ -1,4 +1,8 @@
-import Regular22RowGram
+module
+
+public import Regular22RowGram
+
+@[expose] public section
 
 namespace CoveringMatrixRegular20
 open Covering Covering.PointSplit Covering.PointDegree Covering.TwoPointSplit Covering.SideLift

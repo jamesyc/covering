@@ -1,5 +1,9 @@
-import SmallCutConnectivity
-import Mathlib.Data.Fintype.Prod
+module
+
+public import SmallCutConnectivity
+public import Mathlib.Data.Fintype.Prod
+
+@[expose] public section
 
 /-!
 Color propagation for the physical two-point fibers over surviving graph

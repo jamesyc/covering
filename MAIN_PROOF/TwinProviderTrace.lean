@@ -1,6 +1,11 @@
-import A19ComponentDichotomy
-import PhysicalOutsideTrace
-import Regular22TwinBalance
+module
+
+public import A19ComponentDichotomy
+public import PhysicalOutsideTrace
+public import Regular22TwinBalance
+
+@[expose] public section
+
 open Matrix Finset
 open scoped BigOperators
 namespace Covering.NormalizedBridge20261003.ExceptionBranch

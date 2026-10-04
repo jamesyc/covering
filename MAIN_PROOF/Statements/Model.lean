@@ -1,4 +1,8 @@
-import Std
+module
+
+public import Std
+
+@[expose] public section
 
 /-!
 The independently readable target model. Points of `Fin n` have public labels

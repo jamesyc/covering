@@ -1,5 +1,9 @@
-import Mathlib.Data.Fintype.Prod
-import Mathlib.Logic.Equiv.Prod
+module
+
+public import Mathlib.Data.Fintype.Prod
+public import Mathlib.Logic.Equiv.Prod
+
+@[expose] public section
 
 /-! Explicit two-point coordinates for a fixed-point-free involution on twenty
 physical points. This does not depend on the graph, spectral, or color modules. -/

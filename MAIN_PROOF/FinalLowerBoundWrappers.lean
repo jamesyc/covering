@@ -1,5 +1,9 @@
-import rounds.round_06.lean.PointSplit
-import rounds.round_06.theory.PointDegree
+module
+
+public import rounds.round_06.lean.PointSplit
+public import rounds.round_06.theory.PointDegree
+
+@[expose] public section
 
 /-! Conditional final wrappers. The exact nineteen-row contradiction is an
 explicit input until the independently checked terminal branches are composed.

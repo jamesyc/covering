@@ -1,4 +1,8 @@
-import campaigns.async_goal.lean.CrossGridV3
+module
+
+public import campaigns.async_goal.lean.CrossGridV3
+
+@[expose] public section
 
 namespace Covering.D0.WeightedProvider
 

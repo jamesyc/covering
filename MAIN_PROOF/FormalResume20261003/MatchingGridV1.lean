@@ -1,6 +1,10 @@
-import campaigns.async_goal.lean.recovered.CrossGridThreeRecoveredV3
-import campaigns.async_goal.lean.twin_cap.CliqueIncidenceV2
-import campaigns.async_goal.lean.recovered.PairLowerBoundRecoveredV4
+module
+
+public import campaigns.async_goal.lean.recovered.CrossGridThreeRecoveredV3
+public import campaigns.async_goal.lean.twin_cap.CliqueIncidenceV2
+public import campaigns.async_goal.lean.recovered.PairLowerBoundRecoveredV4
+
+@[expose] public section
 
 namespace Covering.NormalizedBridge20261003.MatchingGrid
 

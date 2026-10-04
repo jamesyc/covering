@@ -1,4 +1,9 @@
-import WeightedKernelBalanced
+module
+
+public import WeightedKernelBalanced
+
+@[expose] public section
+
 open Matrix Finset
 open scoped BigOperators
 namespace WeightedKernelComponents.System

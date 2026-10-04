@@ -1,4 +1,8 @@
-import Foundations.Basic
+module
+
+public import Foundations.Basic
+
+@[expose] public section
 
 /-!
 Nonnegative integer weighted counting for the canonical covering model.
