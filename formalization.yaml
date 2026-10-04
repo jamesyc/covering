@@ -1,0 +1,144 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/mathlib-initiative/formalization.yaml/main/schema/formalization.schema.json
+version: "v0.4"
+
+project:
+  name: "Lower bounds for the covering numbers C(24,14,4) and C(25,15,5)"
+  description: >-
+    A Lean proof that every family of 14-element subsets of a 24-element set covering all
+    4-element subsets has at least 20 members, so the covering number C(24,14,4) is at least 20,
+    improving the previously tabulated lower bound of 19. Point derivation (the Schönheim bound)
+    then gives C(25,15,5) >= 34, improving the tabulated 32. The proof excludes a hypothetical
+    19-block covering using degree and codegree counting, a Gram-matrix rank argument that forces
+    balanced bipartite components, and a structural analysis of the two resulting cases.
+  authors:
+    - "James Chang"
+  license: "Apache-2.0"
+  responsible_maintainers:
+    - "James Chang"
+
+classification:
+  arxiv: ["math.CO"]
+  msc2020: ["05B40"]
+
+sources:
+  - title: "Lower bounds C(24,14,4) >= 20 and C(25,15,5) >= 34, first presented in this repository"
+    type: original-proof
+    relationship: other
+    note: >-
+      The previous best lower bounds, 19 and 32, are those listed in the La Jolla Covering
+      Repository and on coveringrepository.com. The maintainer checked that no better lower bound
+      had been published.
+  - title: "On coverings"
+    authors:
+      - "Johanan Schönheim"
+    id: "https://doi.org/10.2140/pjm.1964.14.1405"
+    type: article
+    location: "Pacific Journal of Mathematics 14(4) (1964), 1405-1411"
+    relationship: background
+    note: >-
+      The Schönheim bound C(v,k,t) >= ceil(v/k * C(v-1,k-1,t-1)) gives the previous lower bound 19
+      and turns C(24,14,4) >= 20 into C(25,15,5) >= 34. The development proves the instances it
+      needs.
+  - title: "La Jolla Covering Repository"
+    authors:
+      - "Daniel M. Gordon"
+    id: "https://doi.org/10.5281/zenodo.10779736"
+    type: database
+    location: "https://dmgordon.org/covering-designs/"
+    relationship: background
+    note: "Source of the previously tabulated bounds 19 <= C(24,14,4) <= 23 and 32 <= C(25,15,5)."
+  - title: "Covering Repository"
+    authors:
+      - "Giovanni Acerbi"
+    type: database
+    location: "https://coveringrepository.com/"
+    relationship: background
+    note: "Current successor of the La Jolla tables; lists the best known coverings of 23 and 42 blocks."
+
+related_formalizations: []
+
+status:
+  scope: >-
+    Challenge.lean states C(24,14,4) >= 20 and C(25,15,5) >= 34 for Finset families of subsets of
+    Fin 24 and Fin 25. The underlying development proves stronger list-based statements in which
+    repeated blocks are allowed. Neither covering number is determined exactly. The further
+    Schönheim consequences C(26,16,6) >= 56, C(27,17,7) >= 89 and C(28,18,8) >= 139 are not
+    formalized.
+  sorry_count: 0
+  sorry_in_definitions: 0
+  axioms: []
+
+automation:
+  methods:
+    - method: agent
+      models: []
+      framework: "OpenAI Dots"
+      tool_setup: >-
+        A multi-agent research campaign in an OpenAI Dots shared workspace, with separate roles for
+        Lean formalization, mathematical research, construction search, adversarial review and
+        coordination. The agents wrote the mathematical argument and all 80 proof modules. The
+        underlying model names are not recorded in the campaign files.
+      cost:
+        wall_time: "about 3 days (1-3 October 2026)"
+        spend_usd: "0 (OpenAI Dots usage was free at the time)"
+        hardware: "OpenAI Dots cloud workspace"
+      prompting_notes: >-
+        The campaign's goal was a covering of all 5-subsets of a 25-set by at most 41 15-subsets.
+        That goal was not reached. The agents reduced it to a 24-point problem, and the bound
+        C(24,14,4) >= 20 came out of that reduction. Agents were told to keep accepted Lean
+        foundations separate from experimental work and to label each claim's evidence.
+    - method: agent
+      models: ["Claude Opus 5.5"]
+      framework: "Claude Code"
+      tool_setup: >-
+        After the campaign: fresh rebuilds and kernel re-checks, the port from Lean 4.34.1 to
+        4.35.0-rc3 and to the module system, the Finset restatement in IndependentCheck.lean, and
+        the Palomar Challenge, Solution and metadata. No proof argument was changed.
+      cost:
+        wall_time: "about 3 hours"
+        spend_usd: "not tracked"
+        hardware: "local machine (Apple Silicon Mac)"
+      prompting_notes: "n/a"
+  spend_usd: "0 for the OpenAI Dots campaign; Claude Code packaging not tracked"
+  notes: >-
+    James Chang ran the OpenAI Dots campaign and directed the later packaging. The mathematical
+    argument and the Lean proof were written by AI agents, not by a person.
+
+fidelity:
+  divergences: >-
+    None known. Challenge.lean uses the standard definition of a covering design, with point set
+    Fin v and a Finset of blocks. The main development uses list-based families that also allow
+    repeated blocks; Solution.lean derives the Finset statements from those theorems.
+
+review:
+  status: "self-assessed"
+  reviewers:
+    - "none"
+  notes: >-
+    No mathematician has reviewed the proof yet; a review has been requested. The statement was
+    checked by deriving the textbook Finset formulation from the list-based theorems. The
+    development was rebuilt from source and every module re-checked with leanchecker on Lean
+    4.34.1 and 4.35.0-rc3. Reviews by agents during the campaign are recorded in its archives
+    and are not human review.
+
+alignment:
+  namespace: "Covering"
+  statements:
+    - source: "C(24,14,4) >= 20"
+      lean: "Covering.Palomar.covering_24_14_4_lower_bound"
+      module: "Solution"
+      status: "proved"
+      note: >-
+        Main result. Follows from Covering.FinalCoveringBounds.c24_14_4_lower_twenty in
+        MAIN_PROOF/FinalCoveringBounds.lean.
+    - source: "C(25,15,5) >= 34"
+      lean: "Covering.Palomar.covering_25_15_5_lower_bound"
+      module: "Solution"
+      status: "proved"
+      note: >-
+        Derived from C(24,14,4) >= 20 by point derivation inside the development
+        (Covering.FinalCoveringBounds.c25_15_5_lower_thirty_four).
+
+acknowledgements: >-
+  Lean 4 and Mathlib. Previous bounds from the La Jolla Covering Repository (Daniel M. Gordon) and
+  coveringrepository.com (Giovanni Acerbi). Repository layout and checks from the Palomar template.

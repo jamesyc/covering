@@ -1,5 +1,6 @@
-name = "covering_replay"
-defaultTargets = ["CoveringProof", "Checks"]
+name = "covering"
+version = "0.1.0"
+defaultTargets = ["CoveringProof", "Checks", "Challenge", "Solution"]
 
 [[require]]
 name = "mathlib"
@@ -96,3 +97,11 @@ roots = [
 [[lean_lib]]
 name = "Checks"
 roots = ["IndependentCheck"]
+
+[[lean_lib]]
+name = "Challenge"
+roots = ["Challenge"]
+
+[[lean_lib]]
+name = "Solution"
+roots = ["Solution"]
