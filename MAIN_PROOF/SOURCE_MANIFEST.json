@@ -1,0 +1,892 @@
+{
+  "status": "EXACT_AUTHOR_CHECKED_SCIENTIFIC_SOURCE_CLOSURE_PENDING_FINAL_INDEPENDENT_ACCEPTANCE",
+  "lean_version": "4.34.1",
+  "mathlib_commit": "d13f23b723b8a846827a245b89c10fc7d3f11612",
+  "root_module": "FinalCoveringBounds",
+  "source_order": [
+    "MatrixFoundation",
+    "Statements.Model",
+    "Foundations.Basic",
+    "rounds.round_05.theory.WeightedCounting",
+    "Foundations.Relabel",
+    "rounds.round_06.theory.PointDegree",
+    "Statements.Shadow",
+    "Foundations.Shadow",
+    "Foundations.Capacity",
+    "campaigns.async_goal.lean.recovered.CrossGridRecoveredV1",
+    "campaigns.async_goal.lean.recovered.CrossGridThreeRecoveredV3",
+    "campaigns.async_goal.lean.recovered.PairLowerBoundRecoveredV4",
+    "campaigns.async_goal.lean.PairLowerBoundV4",
+    "rounds.round_06.lean.PointSplit",
+    "campaigns.async_goal.lean.d0.DerivativeV1",
+    "campaign_next15.lean.d0_lift.SlotPairsV2",
+    "Statements.Target",
+    "rounds.round_06.lean.GlobalTarget",
+    "rounds.round_16.lean.TwoPointSplit",
+    "FormalResume20261003.SlotDegreesV1",
+    "FormalResume20261003.PairFloorV1",
+    "campaigns.async_goal.lean.CrossGridV3",
+    "campaigns.async_goal.lean.d0.WeightedProviderV2",
+    "campaigns.async_goal.lean.twin_cap.CliqueIncidenceV2",
+    "FormalResume20261003.MatchingGridV1",
+    "FormalResume20261003.LowPairProfileV1",
+    "FormalResume20261003.Regular22MatchingV1",
+    "FormalResume20261003.SixPointTriplesV1",
+    "FormalResume20261003.Regular22IncidenceV1",
+    "A19PhysicalFloors",
+    "A19DegreeArithmetic",
+    "A19PhysicalCounts",
+    "A19LowCardinality",
+    "FormalResume20261003.Regular22TwoProviderV1",
+    "PhysicalIncidenceMatrix",
+    "WeightedSignlessKernel",
+    "WeightedKernelComponents",
+    "WeightedKernelBalanced",
+    "RowSumFactorization",
+    "WeightedKernelGram",
+    "WeightedKernelDimension",
+    "WeightedKernelClassification",
+    "WeightedKernelIncidence",
+    "A19WeightedFrontend",
+    "A19PhysicalBalance",
+    "A19ComponentParts",
+    "WeightedComponentSupports",
+    "A19ComponentUnion",
+    "A19GadgetInterface",
+    "A19TwoTwinGadget",
+    "ComponentOrderDichotomy",
+    "A19ComponentDichotomy",
+    "PhysicalOutsideTrace",
+    "Regular22MatrixRows",
+    "Regular22PhysicalRigidity",
+    "Regular22TwinBalance",
+    "TwinProviderTrace",
+    "OmissionSlotCounting",
+    "SignedTraceBalance",
+    "ProviderSides",
+    "BalancedSidesObstruction",
+    "PhysicalExceptionExclusion",
+    "GadgetSlotPartition",
+    "Regular22RankConsequences",
+    "Regular22RowGram",
+    "Regular20Extension",
+    "Regular20Twins",
+    "GadgetPhysicalTraces",
+    "GadgetResidualColors",
+    "Regular20RowIntersections",
+    "GadgetPairGeometry",
+    "SmallCutConnectivity",
+    "QuotientMatrixGraph",
+    "PhysicalQuotientMatrix",
+    "InvolutionPairCoordinates",
+    "SmallCutColorConsequence",
+    "HighPointDeletion",
+    "GadgetExclusion",
+    "FinalLowerBoundWrappers",
+    "FinalCoveringBounds"
+  ],
+  "external_imports": [
+    "Mathlib.Algebra.BigOperators.Fin",
+    "Mathlib.Algebra.BigOperators.Group.Finset.Lemmas",
+    "Mathlib.Algebra.Order.BigOperators.Group.Finset",
+    "Mathlib.Algebra.Order.Star.Real",
+    "Mathlib.Analysis.Matrix.Spectrum",
+    "Mathlib.Basic.Real.Basic",
+    "Mathlib.Combinatorics.SimpleGraph.AdjMatrix",
+    "Mathlib.Combinatorics.SimpleGraph.Connectivity.Connected",
+    "Mathlib.Combinatorics.SimpleGraph.Connectivity.Finite",
+    "Mathlib.Data.Fintype.EquivFin",
+    "Mathlib.Data.Fintype.Prod",
+    "Mathlib.Data.List.OfFn",
+    "Mathlib.LinearAlgebra.Matrix.PosDef",
+    "Mathlib.LinearAlgebra.Matrix.Rank",
+    "Mathlib.Logic.Equiv.Prod",
+    "Mathlib.Tactic.Linarith",
+    "Mathlib.Tactic.Ring",
+    "Std"
+  ],
+  "modules": {
+    "MatrixFoundation": {
+      "path": "MatrixFoundation.lean",
+      "origin": "/workspace/scratch/c569c316cd54/matrix_probe_20261003/MatrixFoundation.lean",
+      "sha256": "4c988fbf2fc75d7dfb1973dcab388d9a8bf6f04d238fe03e1c569831c40a0201",
+      "bytes": 2556,
+      "imports": [
+        "Mathlib.LinearAlgebra.Matrix.Rank",
+        "Mathlib.Analysis.Matrix.Spectrum"
+      ]
+    },
+    "Statements.Model": {
+      "path": "Statements/Model.lean",
+      "origin": "/workspace/scratch/c569c316cd54/matrix_probe_20261003/a19_dependency_overlay/Statements/Model.lean",
+      "sha256": "895ab3c3c5172c82ce66e07b94927399c9dee0d91d1455cd44a75ad4aa63f97a",
+      "bytes": 1791,
+      "imports": [
+        "Std"
+      ]
+    },
+    "Foundations.Basic": {
+      "path": "Foundations/Basic.lean",
+      "origin": "/workspace/scratch/c569c316cd54/matrix_probe_20261003/a19_dependency_overlay/Foundations/Basic.lean",
+      "sha256": "012765c2e770a77f4c118eab3b0ac960904c1153006ac2b455389727ff025d32",
+      "bytes": 3214,
+      "imports": [
+        "Statements.Model"
+      ]
+    },
+    "rounds.round_05.theory.WeightedCounting": {
+      "path": "rounds/round_05/theory/WeightedCounting.lean",
+      "origin": "/workspace/scratch/c569c316cd54/matrix_probe_20261003/a19_dependency_overlay/rounds/round_05/theory/WeightedCounting.lean",
+      "sha256": "cc777bef94415cad7692f6772ea7e5580d29264ce7d4bbd152d4e4d387edfe6b",
+      "bytes": 5248,
+      "imports": [
+        "Foundations.Basic"
+      ]
+    },
+    "Foundations.Relabel": {
+      "path": "Foundations/Relabel.lean",
+      "origin": "/workspace/scratch/c569c316cd54/matrix_probe_20261003/a19_dependency_overlay/Foundations/Relabel.lean",
+      "sha256": "fbca440706855294614e4a76fc7530086de1a2ebf78a4c0a444b0725e93c0622",
+      "bytes": 5878,
+      "imports": [
+        "Foundations.Basic"
+      ]
+    },
+    "rounds.round_06.theory.PointDegree": {
+      "path": "rounds/round_06/theory/PointDegree.lean",
+      "origin": "/workspace/scratch/c569c316cd54/matrix_probe_20261003/a19_dependency_overlay/rounds/round_06/theory/PointDegree.lean",
+      "sha256": "4c01bce29ee430f0ebe668d02ae8f04c297c1337aa42799a49ca135183691029",
+      "bytes": 4957,
+      "imports": [
+        "rounds.round_05.theory.WeightedCounting",
+        "Foundations.Relabel"
+      ]
+    },
+    "Statements.Shadow": {
+      "path": "Statements/Shadow.lean",
+      "origin": "/workspace/scratch/c569c316cd54/matrix_probe_20261003/a19_dependency_overlay/Statements/Shadow.lean",
+      "sha256": "dc99320066f055d89fd6a92c25c33a221c6705f05ae01802af5405c9d8711118",
+      "bytes": 256,
+      "imports": [
+        "Statements.Model"
+      ]
+    },
+    "Foundations.Shadow": {
+      "path": "Foundations/Shadow.lean",
+      "origin": "/workspace/scratch/c569c316cd54/matrix_probe_20261003/a19_dependency_overlay/Foundations/Shadow.lean",
+      "sha256": "6fb4c4ae261d3395e111bedd7a6fe2c5e1d0b43c8191313f44444d7af325855e",
+      "bytes": 3814,
+      "imports": [
+        "Statements.Shadow",
+        "Foundations.Basic"
+      ]
+    },
+    "Foundations.Capacity": {
+      "path": "Foundations/Capacity.lean",
+      "origin": "/workspace/scratch/c569c316cd54/matrix_probe_20261003/a19_dependency_overlay/Foundations/Capacity.lean",
+      "sha256": "80c4d5aa80884f9ebd2fa595c21e506c06c865d5820ab105467dc2aea864f857",
+      "bytes": 10781,
+      "imports": [
+        "Foundations.Shadow"
+      ]
+    },
+    "campaigns.async_goal.lean.recovered.CrossGridRecoveredV1": {
+      "path": "campaigns/async_goal/lean/recovered/CrossGridRecoveredV1.lean",
+      "origin": "/workspace/scratch/c569c316cd54/matrix_probe_20261003/a19_dependency_overlay/campaigns/async_goal/lean/recovered/CrossGridRecoveredV1.lean",
+      "sha256": "478476d6e1c7c8ffb597230289b86fdd6656cc92a4bf54582f7dd14df94d56cf",
+      "bytes": 6127,
+      "imports": [
+        "rounds.round_06.theory.PointDegree",
+        "Foundations.Capacity"
+      ]
+    },
+    "campaigns.async_goal.lean.recovered.CrossGridThreeRecoveredV3": {
+      "path": "campaigns/async_goal/lean/recovered/CrossGridThreeRecoveredV3.lean",
+      "origin": "/workspace/scratch/c569c316cd54/matrix_probe_20261003/a19_dependency_overlay/campaigns/async_goal/lean/recovered/CrossGridThreeRecoveredV3.lean",
+      "sha256": "596edbfec238e338e7f504247a0e78d25c26252bc697d37888143463ee1746a4",
+      "bytes": 6005,
+      "imports": [
+        "campaigns.async_goal.lean.recovered.CrossGridRecoveredV1"
+      ]
+    },
+    "campaigns.async_goal.lean.recovered.PairLowerBoundRecoveredV4": {
+      "path": "campaigns/async_goal/lean/recovered/PairLowerBoundRecoveredV4.lean",
+      "origin": "/workspace/scratch/c569c316cd54/matrix_probe_20261003/a19_dependency_overlay/campaigns/async_goal/lean/recovered/PairLowerBoundRecoveredV4.lean",
+      "sha256": "673942642b7815e7f90fd150c4f16c10b0e08e1b0a0d125c89a44eaa09828a6e",
+      "bytes": 5928,
+      "imports": [
+        "campaigns.async_goal.lean.recovered.CrossGridThreeRecoveredV3"
+      ]
+    },
+    "campaigns.async_goal.lean.PairLowerBoundV4": {
+      "path": "campaigns/async_goal/lean/PairLowerBoundV4.lean",
+      "origin": "/workspace/scratch/c569c316cd54/matrix_probe_20261003/a19_dependency_overlay/campaigns/async_goal/lean/PairLowerBoundV4.lean",
+      "sha256": "0fb57d23b7cc1449f10b3814384d777f648652ad4b2e78bd7f86082664214feb",
+      "bytes": 306,
+      "imports": [
+        "campaigns.async_goal.lean.recovered.PairLowerBoundRecoveredV4"
+      ]
+    },
+    "rounds.round_06.lean.PointSplit": {
+      "path": "rounds/round_06/lean/PointSplit.lean",
+      "origin": "/workspace/scratch/c569c316cd54/matrix_probe_20261003/a19_dependency_overlay/rounds/round_06/lean/PointSplit.lean",
+      "sha256": "b5fcd3ccd130cd84931b7396524f3b6802a246d5a4ced2384f40ba9be29bb9df",
+      "bytes": 13470,
+      "imports": [
+        "Foundations.Capacity"
+      ]
+    },
+    "campaigns.async_goal.lean.d0.DerivativeV1": {
+      "path": "campaigns/async_goal/lean/d0/DerivativeV1.lean",
+      "origin": "/workspace/scratch/c569c316cd54/matrix_probe_20261003/a19_dependency_overlay/campaigns/async_goal/lean/d0/DerivativeV1.lean",
+      "sha256": "baeb1b16385a86d573f1759c1c06455d357a4a1dbe0c01476d1473de574a2a75",
+      "bytes": 2566,
+      "imports": [
+        "campaigns.async_goal.lean.PairLowerBoundV4",
+        "rounds.round_06.lean.PointSplit"
+      ]
+    },
+    "campaign_next15.lean.d0_lift.SlotPairsV2": {
+      "path": "campaign_next15/lean/d0_lift/SlotPairsV2.lean",
+      "origin": "/workspace/scratch/c569c316cd54/matrix_probe_20261003/a19_dependency_overlay/campaign_next15/lean/d0_lift/SlotPairsV2.lean",
+      "sha256": "e617b1882ab944eb3cf6da68858b960df992f6058c19cbcfa204d1ba788d3882",
+      "bytes": 2715,
+      "imports": [
+        "campaigns.async_goal.lean.d0.DerivativeV1"
+      ]
+    },
+    "Statements.Target": {
+      "path": "Statements/Target.lean",
+      "origin": "/workspace/scratch/c569c316cd54/matrix_probe_20261003/a19_dependency_overlay/Statements/Target.lean",
+      "sha256": "c97b1a4713179dfacabc28ab6448ead87fd70d0d44546f8a27dea42a5885b7ff",
+      "bytes": 259,
+      "imports": [
+        "Statements.Model"
+      ]
+    },
+    "rounds.round_06.lean.GlobalTarget": {
+      "path": "rounds/round_06/lean/GlobalTarget.lean",
+      "origin": "/workspace/scratch/c569c316cd54/matrix_probe_20261003/a19_dependency_overlay/rounds/round_06/lean/GlobalTarget.lean",
+      "sha256": "7139480e07fd834f862ef60dccb79a8d8516675de61029112722f6bf4e16c184",
+      "bytes": 1516,
+      "imports": [
+        "rounds.round_06.lean.PointSplit",
+        "rounds.round_06.theory.PointDegree",
+        "Statements.Target"
+      ]
+    },
+    "rounds.round_16.lean.TwoPointSplit": {
+      "path": "rounds/round_16/lean/TwoPointSplit.lean",
+      "origin": "/workspace/scratch/c569c316cd54/matrix_probe_20261003/a19_dependency_overlay/rounds/round_16/lean/TwoPointSplit.lean",
+      "sha256": "442e6228463aeb931ffeaea331f02359aa57316f16bc67085724842afe622147",
+      "bytes": 6770,
+      "imports": [
+        "rounds.round_06.lean.GlobalTarget"
+      ]
+    },
+    "FormalResume20261003.SlotDegreesV1": {
+      "path": "FormalResume20261003/SlotDegreesV1.lean",
+      "origin": "/workspace/scratch/c569c316cd54/matrix_probe_20261003/a19_dependency_overlay/FormalResume20261003/SlotDegreesV1.lean",
+      "sha256": "3cdfac60dce27c2f35ee3d27ae4ce733369e85308967b3233a624d28f74053b9",
+      "bytes": 3602,
+      "imports": [
+        "rounds.round_16.lean.TwoPointSplit"
+      ]
+    },
+    "FormalResume20261003.PairFloorV1": {
+      "path": "FormalResume20261003/PairFloorV1.lean",
+      "origin": "/workspace/scratch/c569c316cd54/matrix_probe_20261003/a19_dependency_overlay/FormalResume20261003/PairFloorV1.lean",
+      "sha256": "6264f9d71f2e190ee609042bf5c100aad67985084c2426eb0597540b33149484",
+      "bytes": 3222,
+      "imports": [
+        "campaign_next15.lean.d0_lift.SlotPairsV2",
+        "FormalResume20261003.SlotDegreesV1"
+      ]
+    },
+    "campaigns.async_goal.lean.CrossGridV3": {
+      "path": "campaigns/async_goal/lean/CrossGridV3.lean",
+      "origin": "/workspace/scratch/c569c316cd54/matrix_probe_20261003/a19_dependency_overlay/campaigns/async_goal/lean/CrossGridV3.lean",
+      "sha256": "10256173a2096f7fe8b05c1ac546842dc84d14331aa0cc49254d17bb1addd849",
+      "bytes": 301,
+      "imports": [
+        "campaigns.async_goal.lean.recovered.CrossGridRecoveredV1"
+      ]
+    },
+    "campaigns.async_goal.lean.d0.WeightedProviderV2": {
+      "path": "campaigns/async_goal/lean/d0/WeightedProviderV2.lean",
+      "origin": "/workspace/scratch/c569c316cd54/matrix_probe_20261003/a19_dependency_overlay/campaigns/async_goal/lean/d0/WeightedProviderV2.lean",
+      "sha256": "20a4a009699e6c237ec08dff0ffba93c382f636a491c9a09133eab70d22764dd",
+      "bytes": 5592,
+      "imports": [
+        "campaigns.async_goal.lean.CrossGridV3"
+      ]
+    },
+    "campaigns.async_goal.lean.twin_cap.CliqueIncidenceV2": {
+      "path": "campaigns/async_goal/lean/twin_cap/CliqueIncidenceV2.lean",
+      "origin": "/workspace/scratch/c569c316cd54/matrix_probe_20261003/a19_dependency_overlay/campaigns/async_goal/lean/twin_cap/CliqueIncidenceV2.lean",
+      "sha256": "b8a6633e92be05c3a6c60215c074324aaf5ce17e4312ef0b7607a4a0980a6e83",
+      "bytes": 8182,
+      "imports": [
+        "campaigns.async_goal.lean.d0.WeightedProviderV2"
+      ]
+    },
+    "FormalResume20261003.MatchingGridV1": {
+      "path": "FormalResume20261003/MatchingGridV1.lean",
+      "origin": "/workspace/scratch/c569c316cd54/matrix_probe_20261003/a19_dependency_overlay/FormalResume20261003/MatchingGridV1.lean",
+      "sha256": "e454b4c7b586d99a5c1ff67d013a972a69c65d538a71e0f1923754d25adecb2a",
+      "bytes": 4798,
+      "imports": [
+        "campaigns.async_goal.lean.recovered.CrossGridThreeRecoveredV3",
+        "campaigns.async_goal.lean.twin_cap.CliqueIncidenceV2",
+        "campaigns.async_goal.lean.recovered.PairLowerBoundRecoveredV4"
+      ]
+    },
+    "FormalResume20261003.LowPairProfileV1": {
+      "path": "FormalResume20261003/LowPairProfileV1.lean",
+      "origin": "/workspace/scratch/c569c316cd54/matrix_probe_20261003/a19_dependency_overlay/FormalResume20261003/LowPairProfileV1.lean",
+      "sha256": "31db8639655f7c278f5be41f01994a56a8ace6c5ab75c19f48c1cc67030eb61a",
+      "bytes": 5511,
+      "imports": [
+        "FormalResume20261003.MatchingGridV1",
+        "FormalResume20261003.SlotDegreesV1"
+      ]
+    },
+    "FormalResume20261003.Regular22MatchingV1": {
+      "path": "FormalResume20261003/Regular22MatchingV1.lean",
+      "origin": "/workspace/scratch/c569c316cd54/matrix_probe_20261003/a19_dependency_overlay/FormalResume20261003/Regular22MatchingV1.lean",
+      "sha256": "0e0fc619da59d480f5bec869e6833be3c7671d5f878dee0a16011d786394ce61",
+      "bytes": 6053,
+      "imports": [
+        "FormalResume20261003.LowPairProfileV1",
+        "campaign_next15.lean.d0_lift.SlotPairsV2"
+      ]
+    },
+    "FormalResume20261003.SixPointTriplesV1": {
+      "path": "FormalResume20261003/SixPointTriplesV1.lean",
+      "origin": "/workspace/scratch/c569c316cd54/matrix_probe_20261003/a19_dependency_overlay/FormalResume20261003/SixPointTriplesV1.lean",
+      "sha256": "6bf775dd3406fdcc549b52dcd0391ada549edbe2dbef5da6dd9925b1e04687a7",
+      "bytes": 7622,
+      "imports": [
+        "campaigns.async_goal.lean.twin_cap.CliqueIncidenceV2"
+      ]
+    },
+    "FormalResume20261003.Regular22IncidenceV1": {
+      "path": "FormalResume20261003/Regular22IncidenceV1.lean",
+      "origin": "/workspace/scratch/c569c316cd54/matrix_probe_20261003/a19_dependency_overlay/FormalResume20261003/Regular22IncidenceV1.lean",
+      "sha256": "9a5ffae5611f4a99728da226537a3ff7365a511b78219399e3f9409b9cfa73ad",
+      "bytes": 5285,
+      "imports": [
+        "FormalResume20261003.Regular22MatchingV1",
+        "FormalResume20261003.SixPointTriplesV1"
+      ]
+    },
+    "A19PhysicalFloors": {
+      "path": "A19PhysicalFloors.lean",
+      "origin": "/workspace/scratch/c569c316cd54/matrix_probe_20261003/a19_frontend_replay/A19PhysicalFloors.lean",
+      "sha256": "5e88f6ff74a5bcc03a4eb34cd78350a09ba57a7fbfd15c4f4e2d7b6c07dbc6cc",
+      "bytes": 1134,
+      "imports": [
+        "FormalResume20261003.PairFloorV1",
+        "FormalResume20261003.Regular22IncidenceV1"
+      ]
+    },
+    "A19DegreeArithmetic": {
+      "path": "A19DegreeArithmetic.lean",
+      "origin": "/workspace/scratch/c569c316cd54/matrix_probe_20261003/a19_frontend_replay/A19DegreeArithmetic.lean",
+      "sha256": "68f837152d8069b4a0eedf89e2e0ae3f4db9576280035ee3c6effe3200696712",
+      "bytes": 3121,
+      "imports": [
+        "MatrixFoundation"
+      ]
+    },
+    "A19PhysicalCounts": {
+      "path": "A19PhysicalCounts.lean",
+      "origin": "/workspace/scratch/c569c316cd54/matrix_probe_20261003/a19_frontend_replay/A19PhysicalCounts.lean",
+      "sha256": "9d7a7a90ebc8f6c43e515d2de6dd2d87119198a909507b98d4bf28b320edf1dc",
+      "bytes": 5118,
+      "imports": [
+        "MatrixFoundation",
+        "Mathlib.Algebra.BigOperators.Fin",
+        "A19PhysicalFloors",
+        "A19DegreeArithmetic"
+      ]
+    },
+    "A19LowCardinality": {
+      "path": "A19LowCardinality.lean",
+      "origin": "/workspace/scratch/c569c316cd54/matrix_probe_20261003/a19_frontend_replay/A19LowCardinality.lean",
+      "sha256": "1e0dcae7e183164e34c7fa4f04f8c5fd9ce3ec223415dcdbcb4138e5579b7165",
+      "bytes": 1965,
+      "imports": [
+        "A19PhysicalCounts"
+      ]
+    },
+    "FormalResume20261003.Regular22TwoProviderV1": {
+      "path": "FormalResume20261003/Regular22TwoProviderV1.lean",
+      "origin": "/workspace/scratch/c569c316cd54/matrix_probe_20261003/a19_dependency_overlay/FormalResume20261003/Regular22TwoProviderV1.lean",
+      "sha256": "8012a235eee5582ac14533789c4a138957c07c64beecfd47a416ef28d8a9368b",
+      "bytes": 5910,
+      "imports": [
+        "FormalResume20261003.Regular22IncidenceV1"
+      ]
+    },
+    "PhysicalIncidenceMatrix": {
+      "path": "PhysicalIncidenceMatrix.lean",
+      "origin": "/workspace/scratch/c569c316cd54/matrix_probe_20261003/a19_dependency_overlay/PhysicalIncidenceMatrix.lean",
+      "sha256": "42a3a52175d2008baa18018220f8f175c463c329bff6a8bd5d3512005148a0f1",
+      "bytes": 3271,
+      "imports": [
+        "Mathlib.LinearAlgebra.Matrix.Rank",
+        "Mathlib.Basic.Real.Basic",
+        "Mathlib.Algebra.BigOperators.Fin",
+        "Mathlib.Data.List.OfFn",
+        "FormalResume20261003.Regular22TwoProviderV1"
+      ]
+    },
+    "WeightedSignlessKernel": {
+      "path": "WeightedSignlessKernel.lean",
+      "origin": "/workspace/scratch/c569c316cd54/matrix_probe_20261003/WeightedSignlessKernel.lean",
+      "sha256": "e6c1da896c8d9798b13289260fa51cdd750b8de8963582c9dd7ae5e548a59df2",
+      "bytes": 4143,
+      "imports": [
+        "MatrixFoundation",
+        "Mathlib.Combinatorics.SimpleGraph.Connectivity.Finite"
+      ]
+    },
+    "WeightedKernelComponents": {
+      "path": "WeightedKernelComponents.lean",
+      "origin": "/workspace/scratch/c569c316cd54/matrix_probe_20261003/WeightedKernelComponents.lean",
+      "sha256": "ba3f7fd396b907a6a58159eceecea6a8f698b94cea86a1e6e5a790ae9b343d49",
+      "bytes": 5731,
+      "imports": [
+        "WeightedSignlessKernel"
+      ]
+    },
+    "WeightedKernelBalanced": {
+      "path": "WeightedKernelBalanced.lean",
+      "origin": "/workspace/scratch/c569c316cd54/matrix_probe_20261003/WeightedKernelBalanced.lean",
+      "sha256": "259685ec78aad58ffa4cf92c6d96b3788a88dd051588b770aed397c85ad2b77a",
+      "bytes": 5462,
+      "imports": [
+        "WeightedKernelComponents"
+      ]
+    },
+    "RowSumFactorization": {
+      "path": "RowSumFactorization.lean",
+      "origin": "/workspace/scratch/c569c316cd54/matrix_probe_20261003/RowSumFactorization.lean",
+      "sha256": "d5e4d6e861cc4f1f484aafe92a221f6ac297880f6b2331cc2893667f4a55b203",
+      "bytes": 1648,
+      "imports": [
+        "MatrixFoundation"
+      ]
+    },
+    "WeightedKernelGram": {
+      "path": "WeightedKernelGram.lean",
+      "origin": "/workspace/scratch/c569c316cd54/matrix_probe_20261003/WeightedKernelGram.lean",
+      "sha256": "438ac7c22401918534529d92f3d0d46817b5b62d4a855a4111ad57dc908e2a70",
+      "bytes": 3429,
+      "imports": [
+        "Mathlib.Algebra.Order.Star.Real",
+        "Mathlib.LinearAlgebra.Matrix.PosDef",
+        "WeightedKernelBalanced",
+        "RowSumFactorization"
+      ]
+    },
+    "WeightedKernelDimension": {
+      "path": "WeightedKernelDimension.lean",
+      "origin": "/workspace/scratch/c569c316cd54/matrix_probe_20261003/WeightedKernelDimension.lean",
+      "sha256": "a3f1fa10bc8e127d373df3555201027234e0ce79d0ba2c34f5e81930ae1b2a41",
+      "bytes": 3300,
+      "imports": [
+        "WeightedKernelBalanced"
+      ]
+    },
+    "WeightedKernelClassification": {
+      "path": "WeightedKernelClassification.lean",
+      "origin": "/workspace/scratch/c569c316cd54/matrix_probe_20261003/WeightedKernelClassification.lean",
+      "sha256": "9c7903351dabf6f5c7735c371d801ced12e59b391cc35a70b0b2af4ec470825c",
+      "bytes": 4213,
+      "imports": [
+        "WeightedKernelDimension"
+      ]
+    },
+    "WeightedKernelIncidence": {
+      "path": "WeightedKernelIncidence.lean",
+      "origin": "/workspace/scratch/c569c316cd54/matrix_probe_20261003/WeightedKernelIncidence.lean",
+      "sha256": "f74b6a38a4a90909027d467bc00e77e9b8761ed296f6bfcd6405c7f838aa88c5",
+      "bytes": 2757,
+      "imports": [
+        "WeightedKernelGram",
+        "WeightedKernelClassification"
+      ]
+    },
+    "A19WeightedFrontend": {
+      "path": "A19WeightedFrontend.lean",
+      "origin": "/workspace/scratch/c569c316cd54/matrix_probe_20261003/a19_frontend_replay/A19WeightedFrontend.lean",
+      "sha256": "8a62af0dd30c5550fda4bd08992db46e27d0248449c81cf07c2a2a0d381939cc",
+      "bytes": 4925,
+      "imports": [
+        "A19LowCardinality",
+        "PhysicalIncidenceMatrix",
+        "WeightedKernelIncidence"
+      ]
+    },
+    "A19PhysicalBalance": {
+      "path": "A19PhysicalBalance.lean",
+      "origin": "/workspace/scratch/c569c316cd54/matrix_probe_20261003/a19_frontend_replay/A19PhysicalBalance.lean",
+      "sha256": "d36bd1c4b2f63e8703df1dd50016fe5ed99bc51dd4f0d0fa5b5111027d7d1cfa",
+      "bytes": 3137,
+      "imports": [
+        "A19WeightedFrontend"
+      ]
+    },
+    "A19ComponentParts": {
+      "path": "A19ComponentParts.lean",
+      "origin": "/workspace/scratch/c569c316cd54/matrix_probe_20261003/a19_structure_replay/A19ComponentParts.lean",
+      "sha256": "77acecdfbf192d5e34bb3ec5121dcf8adfcb4fa8e544853ae380f576d947ccc2",
+      "bytes": 3359,
+      "imports": [
+        "A19PhysicalBalance"
+      ]
+    },
+    "WeightedComponentSupports": {
+      "path": "WeightedComponentSupports.lean",
+      "origin": "/workspace/scratch/c569c316cd54/matrix_probe_20261003/a19_structure_replay/WeightedComponentSupports.lean",
+      "sha256": "aa1ea7ddb3a257e3d3ccb01aaef705db87f187006eba9a0de5e311731c479655",
+      "bytes": 3102,
+      "imports": [
+        "WeightedKernelIncidence",
+        "Mathlib.Algebra.BigOperators.Group.Finset.Lemmas"
+      ]
+    },
+    "A19ComponentUnion": {
+      "path": "A19ComponentUnion.lean",
+      "origin": "/workspace/scratch/c569c316cd54/matrix_probe_20261003/a19_structure_replay/A19ComponentUnion.lean",
+      "sha256": "537c5fc1a5efa6c7c05178f13e4aef9a6ed54b5b6453e4b0c1e3b39227671b3b",
+      "bytes": 6399,
+      "imports": [
+        "A19PhysicalBalance",
+        "WeightedComponentSupports"
+      ]
+    },
+    "A19GadgetInterface": {
+      "path": "A19GadgetInterface.lean",
+      "origin": "/workspace/scratch/c569c316cd54/matrix_probe_20261003/a19_structure_replay/A19GadgetInterface.lean",
+      "sha256": "bf8cf1f9e17e57f3b345fd85c028530821df8ba5d15ccfcfc270e78d63a6651a",
+      "bytes": 7068,
+      "imports": [
+        "A19ComponentParts",
+        "A19ComponentUnion"
+      ]
+    },
+    "A19TwoTwinGadget": {
+      "path": "A19TwoTwinGadget.lean",
+      "origin": "/workspace/scratch/c569c316cd54/matrix_probe_20261003/a19_structure_replay/A19TwoTwinGadget.lean",
+      "sha256": "14710ed81e13d8e2c886eba02eaf26e68c67bd229a8370075e13c396204f5889",
+      "bytes": 4304,
+      "imports": [
+        "A19GadgetInterface"
+      ]
+    },
+    "ComponentOrderDichotomy": {
+      "path": "ComponentOrderDichotomy.lean",
+      "origin": "/workspace/scratch/c569c316cd54/matrix_probe_20261003/a19_structure_replay/ComponentOrderDichotomy.lean",
+      "sha256": "c836914919bb8e356a96e9a5b85ff9d2ba284eec5f83eb02060e3c3801ba6eb1",
+      "bytes": 2793,
+      "imports": [
+        "WeightedComponentSupports"
+      ]
+    },
+    "A19ComponentDichotomy": {
+      "path": "A19ComponentDichotomy.lean",
+      "origin": "/workspace/scratch/c569c316cd54/matrix_probe_20261003/a19_structure_replay/A19ComponentDichotomy.lean",
+      "sha256": "12b164b691d940bc04885cd44615cbfaa30f112e7f0beb6f124a544c94425839",
+      "bytes": 3122,
+      "imports": [
+        "A19TwoTwinGadget",
+        "ComponentOrderDichotomy"
+      ]
+    },
+    "PhysicalOutsideTrace": {
+      "path": "PhysicalOutsideTrace.lean",
+      "origin": "/workspace/scratch/c569c316cd54/recovery_20261002/formal_resume_20261003/regular20_outside_v3/PhysicalOutsideTrace.lean",
+      "sha256": "1dfc9edff1c8f2baf012ec6c7b6967219c9d6a85c9a489b795f0adea2ef38bef",
+      "bytes": 5284,
+      "imports": [
+        "Mathlib.Algebra.BigOperators.Fin",
+        "Mathlib.Data.Fintype.EquivFin",
+        "FormalResume20261003.Regular22TwoProviderV1"
+      ]
+    },
+    "Regular22MatrixRows": {
+      "path": "Regular22MatrixRows.lean",
+      "origin": "/workspace/scratch/c569c316cd54/recovery_20261002/formal_resume_20261003/matrix_consequences_final_v1/Regular22MatrixRows.lean",
+      "sha256": "03a086057a2b1b77497e2070cea2444af551f167850a04ac1aba4edaf2d981a0",
+      "bytes": 6125,
+      "imports": [
+        "MatrixFoundation"
+      ]
+    },
+    "Regular22PhysicalRigidity": {
+      "path": "Regular22PhysicalRigidity.lean",
+      "origin": "/workspace/scratch/c569c316cd54/recovery_20261002/formal_resume_20261003/matrix_consequences_final_v1/Regular22PhysicalRigidity.lean",
+      "sha256": "0149a6c062b3c6f634c5e609b430a2aa4575fb74197fa71dae0d43b6a485e823",
+      "bytes": 6350,
+      "imports": [
+        "Regular22MatrixRows",
+        "PhysicalIncidenceMatrix",
+        "RowSumFactorization"
+      ]
+    },
+    "Regular22TwinBalance": {
+      "path": "Regular22TwinBalance.lean",
+      "origin": "/workspace/scratch/c569c316cd54/recovery_20261002/formal_resume_20261003/matrix_consequences_final_v1/Regular22TwinBalance.lean",
+      "sha256": "3945d83d2c344fcb2ecfd9c4711a911fecff71b1210847e23b27de811e559ee9",
+      "bytes": 2884,
+      "imports": [
+        "Regular22PhysicalRigidity"
+      ]
+    },
+    "TwinProviderTrace": {
+      "path": "TwinProviderTrace.lean",
+      "origin": "/workspace/scratch/c569c316cd54/matrix_probe_20261003/a19_exception_replay/TwinProviderTrace.lean",
+      "sha256": "fc29aab103093d87ce86d8c0e7c268edd8ed5095b1ab349fe3f0b70b94d7415d",
+      "bytes": 8057,
+      "imports": [
+        "A19ComponentDichotomy",
+        "PhysicalOutsideTrace",
+        "Regular22TwinBalance"
+      ]
+    },
+    "OmissionSlotCounting": {
+      "path": "OmissionSlotCounting.lean",
+      "origin": "/workspace/scratch/c569c316cd54/matrix_probe_20261003/a19_exception_replay/OmissionSlotCounting.lean",
+      "sha256": "2e649b870e566099f9865ab89a9101b2f5a8bb17061f2315a34ffb3ca01ffd6f",
+      "bytes": 6030,
+      "imports": [
+        "Mathlib.Algebra.BigOperators.Fin",
+        "Mathlib.Data.List.OfFn",
+        "FormalResume20261003.SixPointTriplesV1",
+        "campaign_next15.lean.d0_lift.SlotPairsV2"
+      ]
+    },
+    "SignedTraceBalance": {
+      "path": "SignedTraceBalance.lean",
+      "origin": "/workspace/scratch/c569c316cd54/matrix_probe_20261003/a19_exception_replay/SignedTraceBalance.lean",
+      "sha256": "2bda18d29191de313d87437f0e2ae86cd476216fad2f254085093bea8782595b",
+      "bytes": 5877,
+      "imports": [
+        "TwinProviderTrace",
+        "OmissionSlotCounting"
+      ]
+    },
+    "ProviderSides": {
+      "path": "ProviderSides.lean",
+      "origin": "/workspace/scratch/c569c316cd54/matrix_probe_20261003/a19_exception_replay/ProviderSides.lean",
+      "sha256": "dcd29b4fd6ed45f88a557a52f7aa3d5c9286d78b129d7d273e52237ab30688d8",
+      "bytes": 6401,
+      "imports": [
+        "SignedTraceBalance"
+      ]
+    },
+    "BalancedSidesObstruction": {
+      "path": "BalancedSidesObstruction.lean",
+      "origin": "/workspace/scratch/c569c316cd54/matrix_probe_20261003/a19_exception_replay/BalancedSidesObstruction.lean",
+      "sha256": "136ceef1fa234e21174f9085c5475907b7f9a29c7f22478c6c86ce05c53c7cd3",
+      "bytes": 5311,
+      "imports": [
+        "ProviderSides"
+      ]
+    },
+    "PhysicalExceptionExclusion": {
+      "path": "PhysicalExceptionExclusion.lean",
+      "origin": "/workspace/scratch/c569c316cd54/matrix_probe_20261003/a19_exception_replay/PhysicalExceptionExclusion.lean",
+      "sha256": "53ec43b772570016594c8a1b0de35b886ad214a01b5a9f943bdd13597dd203e3",
+      "bytes": 6503,
+      "imports": [
+        "BalancedSidesObstruction"
+      ]
+    },
+    "GadgetSlotPartition": {
+      "path": "GadgetSlotPartition.lean",
+      "origin": "/workspace/scratch/c569c316cd54/recovery_20261002/formal_resume_20261003/regular20_gadget_traces_final_v1/GadgetSlotPartition.lean",
+      "sha256": "b53410113280d84170e09a494cf52dba846124cee77621895b6c9641c822ed57",
+      "bytes": 3084,
+      "imports": [
+        "PhysicalOutsideTrace"
+      ]
+    },
+    "Regular22RankConsequences": {
+      "path": "Regular22RankConsequences.lean",
+      "origin": "/workspace/scratch/c569c316cd54/recovery_20261002/formal_resume_20261003/matrix_consequences_final_v1/Regular22RankConsequences.lean",
+      "sha256": "17394a43c36f20a8b9ebc7a67d41645e977687cae2a545d015a3c8603c66947d",
+      "bytes": 2545,
+      "imports": [
+        "Regular22PhysicalRigidity"
+      ]
+    },
+    "Regular22RowGram": {
+      "path": "Regular22RowGram.lean",
+      "origin": "/workspace/scratch/c569c316cd54/recovery_20261002/formal_resume_20261003/matrix_consequences_final_v1/Regular22RowGram.lean",
+      "sha256": "19234ec1fc518a9531fb436b4d18848880aa3bc784ba7a81d8c3fce81c4c81ce",
+      "bytes": 3755,
+      "imports": [
+        "Regular22RankConsequences",
+        "Regular22TwinBalance"
+      ]
+    },
+    "Regular20Extension": {
+      "path": "Regular20Extension.lean",
+      "origin": "/workspace/scratch/c569c316cd54/recovery_20261002/formal_resume_20261003/regular20_geometry_final_v1/Regular20Extension.lean",
+      "sha256": "ea33fd44ceb2bf317be85d469b629735e02bde45be7269232fb0c2b405c073c1",
+      "bytes": 5793,
+      "imports": [
+        "Regular22RowGram"
+      ]
+    },
+    "Regular20Twins": {
+      "path": "Regular20Twins.lean",
+      "origin": "/workspace/scratch/c569c316cd54/recovery_20261002/formal_resume_20261003/regular20_geometry_final_v1/Regular20Twins.lean",
+      "sha256": "600e15e0b49f5ecf0372cd28bdc716cf9acd4e0070059aaadfc38d12808631fe",
+      "bytes": 5083,
+      "imports": [
+        "Regular20Extension"
+      ]
+    },
+    "GadgetPhysicalTraces": {
+      "path": "GadgetPhysicalTraces.lean",
+      "origin": "/workspace/scratch/c569c316cd54/recovery_20261002/formal_resume_20261003/regular20_gadget_traces_final_v1/GadgetPhysicalTraces.lean",
+      "sha256": "da472b7c14a7dc75469603e4723aa3788ef749366cbf5d7f53af17bfe9a4c281",
+      "bytes": 9821,
+      "imports": [
+        "GadgetSlotPartition",
+        "Regular20Twins",
+        "A19GadgetInterface"
+      ]
+    },
+    "GadgetResidualColors": {
+      "path": "GadgetResidualColors.lean",
+      "origin": "/workspace/scratch/c569c316cd54/recovery_20261002/formal_resume_20261003/regular20_gadget_exclusion_v1/GadgetResidualColors.lean",
+      "sha256": "868587958a5020c13bd3f4aa89a27a90316ac5c701574af1c437a26f5185d6a0",
+      "bytes": 6726,
+      "imports": [
+        "PhysicalOutsideTrace",
+        "Mathlib.Algebra.Order.BigOperators.Group.Finset"
+      ]
+    },
+    "Regular20RowIntersections": {
+      "path": "Regular20RowIntersections.lean",
+      "origin": "/workspace/scratch/c569c316cd54/recovery_20261002/formal_resume_20261003/regular20_geometry_final_v1/Regular20RowIntersections.lean",
+      "sha256": "4de00f2ba824a7bf3807dd2b2cefe8267d1a09120c8038b038e67c99ad985f19",
+      "bytes": 1921,
+      "imports": [
+        "Regular20Twins"
+      ]
+    },
+    "GadgetPairGeometry": {
+      "path": "GadgetPairGeometry.lean",
+      "origin": "/workspace/scratch/c569c316cd54/recovery_20261002/formal_resume_20261003/regular20_gadget_exclusion_v1/GadgetPairGeometry.lean",
+      "sha256": "ef2ee12739f27e18c10d0d7a6b9eebfd5af36815013f33a152776ed98446f416",
+      "bytes": 3150,
+      "imports": [
+        "GadgetPhysicalTraces",
+        "GadgetResidualColors",
+        "Regular20RowIntersections"
+      ]
+    },
+    "SmallCutConnectivity": {
+      "path": "SmallCutConnectivity.lean",
+      "origin": "/workspace/scratch/c569c316cd54/graph_formal_20261003/SmallCutConnectivity.lean",
+      "sha256": "a7af117c4e78ab88650fa71b62c4ebab72d3034dd8538c6dc5b7a0803218b09e",
+      "bytes": 6150,
+      "imports": [
+        "Mathlib.Combinatorics.SimpleGraph.Connectivity.Connected"
+      ]
+    },
+    "QuotientMatrixGraph": {
+      "path": "QuotientMatrixGraph.lean",
+      "origin": "/workspace/scratch/c569c316cd54/graph_formal_20261003/QuotientMatrixGraph.lean",
+      "sha256": "5365b9dde773cd36f551e2d0e998eb0f36fec4c8e9369a3b8b858432be3b288c",
+      "bytes": 9665,
+      "imports": [
+        "Mathlib.Combinatorics.SimpleGraph.AdjMatrix",
+        "Mathlib.Basic.Real.Basic",
+        "Mathlib.Tactic.Linarith",
+        "Mathlib.Tactic.Ring",
+        "SmallCutConnectivity"
+      ]
+    },
+    "PhysicalQuotientMatrix": {
+      "path": "PhysicalQuotientMatrix.lean",
+      "origin": "/workspace/scratch/c569c316cd54/graph_formal_20261003/PhysicalQuotientMatrix.lean",
+      "sha256": "90caf9ed7ec336b259c9815b91abc9ac31ca2fd1d1c9eaa0c218457a8bac2350",
+      "bytes": 8135,
+      "imports": [
+        "PhysicalIncidenceMatrix",
+        "QuotientMatrixGraph",
+        "Mathlib.Algebra.BigOperators.Fin"
+      ]
+    },
+    "InvolutionPairCoordinates": {
+      "path": "InvolutionPairCoordinates.lean",
+      "origin": "/workspace/scratch/c569c316cd54/graph_formal_20261003/InvolutionPairCoordinates.lean",
+      "sha256": "305a2aafd65dce46f86339c697731add7a78a07d76f7a6329b1bb26c18543f91",
+      "bytes": 4332,
+      "imports": [
+        "Mathlib.Data.Fintype.Prod",
+        "Mathlib.Logic.Equiv.Prod"
+      ]
+    },
+    "SmallCutColorConsequence": {
+      "path": "SmallCutColorConsequence.lean",
+      "origin": "/workspace/scratch/c569c316cd54/graph_formal_20261003/SmallCutColorConsequence.lean",
+      "sha256": "b16fcab4e121fd35b45b1a6bf592c5cd452d0e5b7c469cf61c5ce055d0daad2f",
+      "bytes": 6800,
+      "imports": [
+        "SmallCutConnectivity",
+        "Mathlib.Data.Fintype.Prod"
+      ]
+    },
+    "HighPointDeletion": {
+      "path": "HighPointDeletion.lean",
+      "origin": "/workspace/scratch/c569c316cd54/recovery_20261002/formal_resume_20261003/regular20_gadget_exclusion_v1/HighPointDeletion.lean",
+      "sha256": "90b164dc2ca02820f0664a622674f6c0459df9c0400af9f31bd90f066ae6c5f7",
+      "bytes": 5891,
+      "imports": [
+        "SmallCutColorConsequence"
+      ]
+    },
+    "GadgetExclusion": {
+      "path": "GadgetExclusion.lean",
+      "origin": "/workspace/scratch/c569c316cd54/recovery_20261002/formal_resume_20261003/regular20_gadget_exclusion_v1/GadgetExclusion.lean",
+      "sha256": "fef4803f7df7f0cad2aacf0e9083812c87364f5cf48c6b9a38a0434e06b69743",
+      "bytes": 2891,
+      "imports": [
+        "GadgetPairGeometry",
+        "PhysicalQuotientMatrix",
+        "InvolutionPairCoordinates",
+        "HighPointDeletion"
+      ]
+    },
+    "FinalLowerBoundWrappers": {
+      "path": "FinalLowerBoundWrappers.lean",
+      "origin": "/workspace/scratch/c569c316cd54/matrix_probe_20261003/final_wrapper_frozen_v1/FinalLowerBoundWrappers.lean",
+      "sha256": "bc46485e103e2c16e1b493c00a214a9a0791f4f536f6b1a52effc9f7164b1777",
+      "bytes": 5002,
+      "imports": [
+        "rounds.round_06.lean.PointSplit",
+        "rounds.round_06.theory.PointDegree"
+      ]
+    },
+    "FinalCoveringBounds": {
+      "path": "FinalCoveringBounds.lean",
+      "origin": "/workspace/scratch/c569c316cd54/matrix_probe_20261003/final_composition_draft/FinalCoveringBounds.lean",
+      "sha256": "559f5152b8219e69cedc5cf2a9d9d5676b95288d6cf7bb21f84bf69163bb9e41",
+      "bytes": 1697,
+      "imports": [
+        "PhysicalExceptionExclusion",
+        "GadgetExclusion",
+        "FinalLowerBoundWrappers"
+      ]
+    }
+  }
+}

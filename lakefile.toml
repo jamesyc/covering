@@ -1,0 +1,98 @@
+name = "covering_replay"
+defaultTargets = ["CoveringProof", "Checks"]
+
+[[require]]
+name = "mathlib"
+git = "https://github.com/leanprover-community/mathlib4"
+rev = "d13f23b723b8a846827a245b89c10fc7d3f11612"
+
+[[lean_lib]]
+name = "CoveringProof"
+srcDir = "MAIN_PROOF"
+roots = [
+  "MatrixFoundation",
+  "Statements.Model",
+  "Foundations.Basic",
+  "rounds.round_05.theory.WeightedCounting",
+  "Foundations.Relabel",
+  "rounds.round_06.theory.PointDegree",
+  "Statements.Shadow",
+  "Foundations.Shadow",
+  "Foundations.Capacity",
+  "campaigns.async_goal.lean.recovered.CrossGridRecoveredV1",
+  "campaigns.async_goal.lean.recovered.CrossGridThreeRecoveredV3",
+  "campaigns.async_goal.lean.recovered.PairLowerBoundRecoveredV4",
+  "campaigns.async_goal.lean.PairLowerBoundV4",
+  "rounds.round_06.lean.PointSplit",
+  "campaigns.async_goal.lean.d0.DerivativeV1",
+  "campaign_next15.lean.d0_lift.SlotPairsV2",
+  "Statements.Target",
+  "rounds.round_06.lean.GlobalTarget",
+  "rounds.round_16.lean.TwoPointSplit",
+  "FormalResume20261003.SlotDegreesV1",
+  "FormalResume20261003.PairFloorV1",
+  "campaigns.async_goal.lean.CrossGridV3",
+  "campaigns.async_goal.lean.d0.WeightedProviderV2",
+  "campaigns.async_goal.lean.twin_cap.CliqueIncidenceV2",
+  "FormalResume20261003.MatchingGridV1",
+  "FormalResume20261003.LowPairProfileV1",
+  "FormalResume20261003.Regular22MatchingV1",
+  "FormalResume20261003.SixPointTriplesV1",
+  "FormalResume20261003.Regular22IncidenceV1",
+  "A19PhysicalFloors",
+  "A19DegreeArithmetic",
+  "A19PhysicalCounts",
+  "A19LowCardinality",
+  "FormalResume20261003.Regular22TwoProviderV1",
+  "PhysicalIncidenceMatrix",
+  "WeightedSignlessKernel",
+  "WeightedKernelComponents",
+  "WeightedKernelBalanced",
+  "RowSumFactorization",
+  "WeightedKernelGram",
+  "WeightedKernelDimension",
+  "WeightedKernelClassification",
+  "WeightedKernelIncidence",
+  "A19WeightedFrontend",
+  "A19PhysicalBalance",
+  "A19ComponentParts",
+  "WeightedComponentSupports",
+  "A19ComponentUnion",
+  "A19GadgetInterface",
+  "A19TwoTwinGadget",
+  "ComponentOrderDichotomy",
+  "A19ComponentDichotomy",
+  "PhysicalOutsideTrace",
+  "Regular22MatrixRows",
+  "Regular22PhysicalRigidity",
+  "Regular22TwinBalance",
+  "TwinProviderTrace",
+  "OmissionSlotCounting",
+  "SignedTraceBalance",
+  "ProviderSides",
+  "BalancedSidesObstruction",
+  "PhysicalExceptionExclusion",
+  "GadgetSlotPartition",
+  "Regular22RankConsequences",
+  "Regular22RowGram",
+  "Regular20Extension",
+  "Regular20Twins",
+  "GadgetPhysicalTraces",
+  "GadgetResidualColors",
+  "Regular20RowIntersections",
+  "GadgetPairGeometry",
+  "SmallCutConnectivity",
+  "QuotientMatrixGraph",
+  "PhysicalQuotientMatrix",
+  "InvolutionPairCoordinates",
+  "SmallCutColorConsequence",
+  "HighPointDeletion",
+  "GadgetExclusion",
+  "FinalLowerBoundWrappers",
+  "FinalCoveringBounds"
+]
+
+# Independent restatement of the bounds with Mathlib `Finset`s (not part of the archived proof).
+[[lean_lib]]
+name = "Checks"
+roots = ["IndependentCheck"]
