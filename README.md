@@ -26,22 +26,35 @@ bounds. You can read it [as mathematics](PROOF.md) or explore it on the
 
 ## About this proof
 
-This proof was obtained in an unusual way: AI agents wrote all of it.
+This proof grew out of an AI research campaign that I ran in OpenAI Dots on 1–3 October 2026. The team consisted of seven agents: one coordinating dot and six Astra research subagents. The agents developed the mathematical arguments and wrote the Lean proofs. I chose the problem, directed the research, questioned the approach, and helped decide what to pursue next.
 
-I ran a multi-agent research campaign in an OpenAI Dots workspace over about three days,
-1–3 October 2026. Separate agents did Lean formalization, mathematical research, construction
-search, adversarial review and coordination.
+The original target was C(25,15,5): can 41 blocks of size 15 cover every five-element subset of a 25-point set? A 42-block construction is known, but we have not settled whether 41 blocks suffice. The campaign explored both possibilities: searching for a construction and deriving restrictions that any smaller covering would have to satisfy.
 
-The campaign's goal was something else: a covering of all 5-subsets of a 25-point set by at
-most 41 blocks of size 15. Nobody knows whether one exists; the best known has 42. The
-agents had not found the solution to that question. To prove that 41 is impossible, they
-split the problem into cases, and one case came down to whether 19 blocks can cover all
-4-subsets of 24 points.
+The result in this repository emerged as an intermediate lemma. Following the lower-bound route led the agents to the question of whether 19 blocks of size 14 could cover every four-element subset of 24 points. They found a contradiction, establishing C(24,14,4) ≥ 20. The Schönheim bound then gives C(25,15,5) ≥ 34.
 
-They proved that they can't, which is a new lower bound.
+### How the agents worked
 
-Afterwards, I rebuilt everything from source, ported it to a newer Lean, wrote the textbook
-`Finset` statement, and packaged it for [Palomar](https://palomar-registry.org/).
+The work was divided among mathematical research, Lean formalization, construction and computational search, adversarial review, and coordination. Different agents pursued different approaches, exchanged intermediate results, and checked one another’s arguments. A promising argument could be sent to another agent to look for missing assumptions or counterexamples, while a formalizer worked on translating it into Lean.
+
+The mathematics made the problem smaller before computation entered the picture. Counting bounds restricted point degrees and pair incidences. Gram-matrix and rank arguments forced additional structure. Rigidity results reduced the remaining possibilities to configurations that could be excluded by further counting arguments. The proof in this repository records the resulting chain of deductions; [PROOF.md](PROOF.md) presents that chain in more conventional mathematical language.
+
+The distinction between a plausible argument and a verified theorem mattered throughout. An agent’s successful build was tracked separately from an independent rebuild. Review also had to check that the formal statement described an actual covering design, and that intermediate lemmas applied to the same blocks and points used by the final theorem. The verification section below describes the checks on the published result.
+
+### Current research strategy
+
+The campaign is continuing beyond this proof, with the main effort now directed at the possibility of a 20-block (24,14,4) covering. We try to divide that possibility into increasingly restricted classes, prove structural constraints on those classes, and use exact finite searches when the remaining instances are small enough.
+
+Before launching a search, we estimate its size, likely runtime and resource requirements. Short, well-defined checks can be run directly; larger searches need stronger reductions or a better plan. A timeout leaves a question unresolved. A failed construction search does not establish nonexistence.
+
+When a finite computation does resolve a case, the formalization goal is to reproduce its reasoning through direct Lean kernel checking. That requires both the finite check and a proof that every relevant covering is represented by the checked cases. An external program’s answer alone is not the final theorem.
+
+We have since moved from largely fixed assignments to a shared task pool. Agents can propose follow-up tasks as they discover new questions or finish existing work. The coordinator checks their scope, dependencies and priority, then makes them available for other agents to claim. Proof development, independent review, formalization and computational checks are separate tasks, so another agent can continue the work without waiting for the original author. This pool was introduced after the proof presented here was obtained.
+
+### Scope and attribution
+
+This repository establishes lower bounds; it does not determine either covering number or resolve the original 41-block question. AI-agent review is also distinct from review by a human mathematician. The code, mathematical explanation and verification records are published so that others can inspect the argument and reproduce the checks.
+
+After the initial campaign, I rebuilt the proof from source, ported it to a newer Lean version, added the textbook `Finset` formulation, and packaged it for [Palomar](https://palomar-registry.org/entry?id=PALOMAR-2026-10-04-000003&version=1).
 
 ## Why I think it's correct
 
@@ -82,7 +95,7 @@ theorem Covering.Palomar.covering_25_15_5_lower_bound (𝒯 : Finset (Finset (Fi
   ([`scripts/verify-comparator.sh`](scripts/verify-comparator.sh)).
 - [Palomar](https://palomar-registry.org/) ran the same check independently and registered
   the result as
-  [PALOMAR-2026-10-04-000003](https://palomar-registry.org/entry.html?id=PALOMAR-2026-10-04-000003&version=1),
+  [PALOMAR-2026-10-04-000003](https://palomar-registry.org/entry?id=PALOMAR-2026-10-04-000003&version=1),
   pinned to commit `17bca00`.
 - The agents' proof uses a list-based model of a covering in which blocks may repeat
   ([`Statements/Model.lean`](MAIN_PROOF/Statements/Model.lean)).
