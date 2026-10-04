@@ -4,7 +4,7 @@ defaultTargets = ["CoveringProof", "Checks"]
 [[require]]
 name = "mathlib"
 git = "https://github.com/leanprover-community/mathlib4"
-rev = "d13f23b723b8a846827a245b89c10fc7d3f11612"
+rev = "v4.35.0-rc3"
 
 [[lean_lib]]
 name = "CoveringProof"
