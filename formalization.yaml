@@ -26,8 +26,9 @@ sources:
     relationship: other
     note: >-
       The previous best lower bounds, 19 and 32, are those listed in the La Jolla Covering
-      Repository and on coveringrepository.com. The maintainer checked that no better lower bound
-      had been published.
+      Repository and on coveringrepository.com. Neither comes from a dedicated paper: both follow
+      from C(22,12,2) = 6 (Mills) by repeated use of the Schönheim bound. The maintainer checked
+      that no better lower bound had been published.
   - title: "On coverings"
     authors:
       - "Johanan Schönheim"
@@ -36,9 +37,20 @@ sources:
     location: "Pacific Journal of Mathematics 14(4) (1964), 1405-1411"
     relationship: background
     note: >-
-      The Schönheim bound C(v,k,t) >= ceil(v/k * C(v-1,k-1,t-1)) gives the previous lower bound 19
-      and turns C(24,14,4) >= 20 into C(25,15,5) >= 34. The development proves the instances it
-      needs.
+      The Schönheim bound C(v,k,t) >= ceil(v/k * C(v-1,k-1,t-1)), applied twice to
+      C(22,12,2) = 6, gives the previous lower bound 19: C(23,13,3) >= ceil(23 * 6 / 13) = 11,
+      then C(24,14,4) >= ceil(24 * 11 / 14) = 19. One more application gives the previous 32 for
+      C(25,15,5), and turns C(24,14,4) >= 20 into C(25,15,5) >= 34. The development proves the
+      instances it needs.
+  - title: "Covering designs I: coverings by a small number of subsets"
+    authors:
+      - "W. H. Mills"
+    type: article
+    location: "Ars Combinatoria 8 (1979), 199-315"
+    relationship: background
+    note: >-
+      Determines C(v,k,2) when it is small. In particular C(v,k,2) = 6 for 9/5 < v/k <= 2, so
+      C(22,12,2) = 6, the value the previous bounds 19 and 32 are derived from.
   - title: "La Jolla Covering Repository"
     authors:
       - "Daniel M. Gordon"
@@ -46,7 +58,10 @@ sources:
     type: database
     location: "https://dmgordon.org/covering-designs/"
     relationship: background
-    note: "Source of the previously tabulated bounds 19 <= C(24,14,4) <= 23 and 32 <= C(25,15,5)."
+    note: >-
+      Source of the previously tabulated bounds 19 <= C(24,14,4) <= 23 and 32 <= C(25,15,5). Its
+      list of lower-bound improvements does not include either parameter set; uncited lower bounds
+      there follow from the Schönheim bound.
   - title: "Covering Repository"
     authors:
       - "Giovanni Acerbi"
