@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
     inputs:
       commit:
-        description: Full 40-character commit to check (default: this run's commit)
+        description: "Full 40-character commit to check (default is this run's commit)"
         required: false
         type: string
 
