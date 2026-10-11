@@ -1,0 +1,606 @@
+\documentclass[11pt,letterpaper]{article}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern,amsmath,amssymb,amsthm,mathtools}
+\usepackage[margin=1in]{geometry}
+\usepackage{microtype,booktabs,array,enumitem}
+\usepackage[dvipsnames]{xcolor}
+\usepackage[colorlinks=true,linkcolor=MidnightBlue,urlcolor=MidnightBlue]{hyperref}
+\usepackage{fancyhdr}
+\pagestyle{fancy}\fancyhf{}
+\fancyhead[L]{\small A structural lower bound for $C(24,14,4)$}
+\fancyhead[R]{}
+\fancyfoot[C]{\thepage}
+\setlength{\headheight}{14pt}
+\setlength{\parskip}{3pt}
+\setlength{\parindent}{0pt}
+\setlist{nosep,leftmargin=*}
+\emergencystretch=2em
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{proposition}[theorem]{Proposition}
+\theoremstyle{definition}\newtheorem{definition}[theorem]{Definition}
+\theoremstyle{remark}\newtheorem{remark}[theorem]{Remark}
+\newcommand{\RR}{\mathbb R}
+\newcommand{\one}{\mathbf 1}
+\newcommand{\calF}{\mathcal F}
+\newcommand{\calT}{\mathcal T}
+\newcommand{\calH}{\mathcal H}
+\newcommand{\calE}{\mathcal E}
+\newcommand{\calG}{\mathcal G}
+\newcommand{\calR}{\mathcal R}
+\newcommand{\calD}{\mathcal D}
+\newcommand{\calP}{\mathcal P}
+\newcommand{\calB}{\mathcal B}
+\newcommand{\lam}{\lambda}
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+\newcommand{\code}[1]{{\small\nolinkurl{#1}}}
+\newcommand{\calC}{\mathcal C}
+\title{A structural lower bound for $C(24,14,4)$}
+\author{James Chang\\[3pt]{\small\href{mailto:jamesc@berkeley.edu}{\nolinkurl{jamesc@berkeley.edu}}}}
+\date{11 October 2026}
+\hypersetup{pdftitle={A structural lower bound for C(24,14,4)},pdfauthor={James Chang},pdfsubject={Combinatorial covering bounds},pdfkeywords={covering designs, covering numbers, Turan numbers, rigidity, Lean}}
+\begin{document}
+\maketitle
+\begin{abstract}
+We prove $C(24,14,4)\ge20$ and hence $C(25,15,5)\ge34$.
+The proof excludes a hypothetical nineteen-block covering by exploiting its two excess point incidences. A sum-of-squares identity describes the linear relations among minimum-degree incidence vectors and forces at least three balanced components on at most sixteen points. We show that the point set of every eleven-block $(22,12,3)$ covering partitions into eleven twin pairs. Applying this rigidity to suitable completions and derivatives reduces the remaining cases to two elementary counting contradictions. The proof is self-contained, and a companion Lean formalization establishes both bounds.
+\end{abstract}
+
+{\small\noindent\textbf{MSC 2020:} 05B40 (primary); 05B05, 05D05, 68V20 (secondary).\\
+\textbf{Keywords:} covering designs, covering numbers, Tur\'an numbers, rigidity, Lean.}
+
+\section{Introduction and the shape of the proof}\label{sec:intro}
+A $(v,k,t)$ \emph{cover} is a family of $k$-element subsets of a $v$-element set in which every $t$-element subset is contained in a member of the family. The members are called \emph{blocks}, and the smallest possible number of blocks is the \emph{covering number} $C(v,k,t)$. Taking complements of blocks identifies covering numbers with Tur\'an numbers of hypergraphs, $C(v,k,t)=T(v,v-t,v-k)$~\cite{Sidorenko}. Surveys of covering designs include~\cite{MillsMullin,GordonStinson}.
+
+\begin{theorem}\label{thm:main}
+Every $(24,14,4)$ cover has at least twenty blocks. In particular,
+\[
+ C(24,14,4)\ge20.
+\]
+\end{theorem}
+
+The La Jolla Covering Repository~\cite{LJCR} lists the lower bounds $C(24,14,4)\ge19$ and $C(25,15,5)\ge32$. We strengthen these bounds to twenty and thirty-four, respectively. Theorem~\ref{thm:main} excludes the nineteen-block equality case; the second improvement follows from Sch\"onheim's recursive bound~\cite{Schonheim} and is stated in Corollary~\ref{cor:25}. Combining these lower bounds with the twenty-three-block $(24,14,4)$ construction of Ochmat and the forty-two-block $(25,15,5)$ construction of Atzeni listed in the Covering Repository~\cite{CoveringRepository} gives
+\[
+ 20\le C(24,14,4)\le23,\qquad 34\le C(25,15,5)\le42.
+\]
+Neither covering number is determined here.
+
+The starting point is an elementary pair-cover obstruction:
+\[
+ C(22,12,2)\ge6.
+\]
+Its proof is included in Appendix~\ref{sec:small}. Taking derivatives through points and counting incidences then gives
+\[
+ C(23,13,3)\ge11,\qquad C(24,14,4)\ge19.
+\]
+The first two bounds are sharp: $C(22,12,2)=6$ and $C(23,13,3)=11$~\cite{LJCR,GordonStinson}. Our task is to exclude equality in the third inequality.
+
+Here is the reason the equality case is accessible. Every point of a $(24,14,4)$ cover occurs in at least eleven blocks. Nineteen blocks would supply $19\cdot14=266$ incidences, only two more than the required $24\cdot11=264$. Thus at least twenty-two points have degree exactly eleven. Their incidence vectors lie in $\RR^{19}$, so they satisfy at least three independent linear relations. A sum-of-squares identity shows that these relations come from disjoint groups of points, each split into two equal parts met equally often by every block. There are at most sixteen points in all these groups together.
+
+The rest of the proof explains why these balanced groups cannot exist. A group of size four, or two groups of size two, gives a \emph{balanced quadruple}. Completing suitable restrictions to eleven-block covers forces a six-regular graph on twenty points. Its neighborhoods would put seven points in an omission class of size at most six. Once balanced quadruples have been excluded, the component sizes force one two-point group and two larger groups. Restricting to the eleven blocks through the two-point group leaves eight blocks whose omission sets would give five triples on six positions, any two meeting once. Such triples require fifteen incidences, but only twelve are possible.
+
+Coverings with a small number of blocks have been studied systematically by Mills~\cite{Mills} and Todorov~\cite{Todorov}. Horsley~\cite{Horsley} generalized Fisher's inequality to coverings, and Horsley and Singh~\cite{HorsleySingh} obtain lower bounds from the ranks of incidence Gram matrices, using positive definite principal submatrices. Krug~\cite{Krug} recently determined $C(12,6,4)=41$ by excluding the equality case of a counting bound with a certified satisfiability search. Many of the best known upper bounds come from the constructions of Gordon, Kuperberg and Patashnik~\cite{GKP}. The present argument describes the entire relation space among low-point incidence vectors in the nineteen-block equality case. A sum-of-squares identity identifies its basis with balanced components (Lemma~\ref{lem:relation-space}); the eleven-block rigidity theorem of Section~\ref{sec:rigidity} then controls completions and derivatives of the covering. This combination yields the two counting contradictions used to exclude equality. All auxiliary lower bounds are proved in Appendix~\ref{sec:small}, so the lower-bound proof does not rely on tabulated values. A Lean formalization of the proof accompanies this article as ancillary files~\cite{Formalization}; see Section~\ref{sec:formalization}.
+
+\paragraph{Notation and multiplicities.}
+We allow an \emph{indexed} family $\calB=(B_i)_{i\in I}$, so two distinct indices may specify the same subset. Every count retains these indices, including after restriction. This avoids silently discarding multiplicities when two original blocks have the same trace. A lower bound for indexed families also applies to ordinary families of distinct blocks.
+
+Write
+\[
+ d_{\calB}(p)=\#\{i:p\in B_i\},\qquad
+ \lam_{\calB}(p,q)=\#\{i:p,q\in B_i\}.
+\]
+Thus $\lam_{\calB}(p,p)=d_{\calB}(p)$. Subscripts are omitted when the family is clear. For $k$-element blocks, double counting gives
+\begin{equation}\label{eq:counts}
+ \sum_p d(p)=k|I|,
+ \qquad \sum_q\lam(p,q)=k\,d(p).
+\end{equation}
+The \emph{derivative through} a set retains the blocks containing that set and deletes its points. The \emph{trace on} a set intersects each retained block with that set. All sums over unordered pairs below explicitly use either $\{p,q\}$ or $i<j$.
+
+\section{Eleven blocks force inseparable pairs}\label{sec:rigidity}
+We first state the structural result in the form used later.
+
+\begin{theorem}[Eleven-block rigidity]\label{thm:rigidity}
+Let eleven twelve-element blocks cover every triple of a twenty-two-element set. Then the points split into eleven pairs such that every block contains either both points of a pair or neither. Each point occurs in six blocks, and points from different pairs occur together in exactly three blocks. Any two distinct block indices have intersection size six.
+\end{theorem}
+
+We call the two members of a pair \emph{twins}, and write $\sigma(p)$ for the twin of $p$. Thus $\sigma$ is a fixed-point-free involution, and
+\begin{equation}\label{eq:twin-codegree}
+ \lam(p,q)=
+ \begin{cases}
+ 6,&q=p\text{ or }q=\sigma(p),\\
+ 3,&\text{otherwise}.
+ \end{cases}
+\end{equation}
+Compressing each twin pair to one point produces eleven six-element blocks on eleven points, with every pair in exactly three blocks: a symmetric $2$-$(11,6,3)$ design. We need only the paired structure, not a classification of these designs.
+
+\subsection{Local restrictions on codegrees}
+The pair-cover bound in Lemma~\ref{lem:pairfloor} forces every point to occur at least six times. Indeed, the blocks through a fixed point $p$, with $p$ retained, cover every pair of the twenty-two points: extend the pair with $p$ to a triple when necessary. Since the total degree is $11\cdot12=22\cdot6$, all point degrees are exactly six.
+
+For distinct $p,q$, the blocks through both must cover the other twenty points, ten at a time. Hence
+\[
+ 2\le\lam(p,q)\le6.
+\]
+We also need the following elementary fact, proved in Lemma~\ref{lem:two-low}: in a cover of all pairs of twenty-one points by six eleven-element blocks, at most one point has degree two. Apply this to the derivative through $p$. It follows that, for a fixed $p$, at most one $q$ has $\lam(p,q)=2$. In other words, the pairs of codegree two form a matching.
+
+For distinct points put $e_{pq}=\lam(p,q)-3$, and put $e_{pp}=0$. These deviations are symmetric, and every row has sum
+\begin{equation}\label{eq:row-sum}
+ \sum_q e_{pq}=11\cdot6-21\cdot3=3.
+\end{equation}
+The \emph{energy} at $p$ is
+\[
+ E_p=\sum_q e_{pq}^{\,2}.
+\]
+We will bound this energy in two ways: locally from the covering constraints, and globally by counting the same configurations through pairs of blocks.
+
+\begin{lemma}\label{lem:rowenergy}
+For every point, $E_p\le9$. If its row contains a negative deviation, then $E_p=5$.
+\end{lemma}
+\begin{proof}
+For a nonnegative row, the sum of squares is at most the square of the sum, so~\eqref{eq:row-sum} gives $E_p\le9$.
+
+Otherwise the row has a unique negative entry, $e_{pq}=-1$. The two blocks containing both $p,q$ partition the other twenty points after $p,q$ are deleted. Thus each point $z\notin\{p,q\}$ occurs in exactly one of these two blocks. Exactly one of the eleven blocks contains neither $p$ nor $q$, since $6+6-2=10$ contain at least one of them. For any such $z$, inclusion--exclusion in its six incident blocks, counting the block through $p,q,z$ twice, gives
+\[
+ \lam(p,z)+\lam(q,z)
+ +\#\{i:z\in B_i,\ p,q\notin B_i\}=7.
+\]
+The last term is zero or one. The matching restriction implies $\lam(p,z),\lam(q,z)\ge3$, so each is three or four. The row at $p$ therefore has one entry $-1$, with all remaining entries zero or one. Its sum is three, so exactly four entries are one. Thus $E_p=1+4=5$.
+\end{proof}
+
+\subsection{A double count makes every defect vanish}
+Put $s_{ij}=|B_i\cap B_j|$. Count a choice of two distinct points and two distinct block indices containing them in two ways:
+\begin{equation}\label{eq:double-count}
+ \sum_{\{p,q\}}\binom{\lam(p,q)}2
+ =\sum_{i<j}\binom{s_{ij}}2.
+\end{equation}
+The first moments are equally simple:
+\[
+ \sum_{\{p,q\}}\lam(p,q)=11\binom{12}{2}=726,
+ \qquad
+ \sum_{i<j}s_{ij}=22\binom62=330.
+\]
+Using $2\binom n2=n^2-n$ in~\eqref{eq:double-count} and expanding the squared deviations now gives
+\begin{equation}\label{eq:variance}
+ \sum_p E_p=198+2\sum_{i<j}(s_{ij}-6)^2.
+\end{equation}
+For completeness, the expansion is
+\[
+\begin{aligned}
+\sum_pE_p
+&=2\sum_{\{p,q\}}\lam(p,q)^2-12\cdot726+18\binom{22}{2},\\
+2\sum_{i<j}(s_{ij}-6)^2
+&=2\sum_{i<j}s_{ij}^2-24\cdot330+72\binom{11}{2};
+\end{aligned}
+\]
+subtracting these expressions and using~\eqref{eq:double-count} yields~\eqref{eq:variance}.
+
+Together with Lemma~\ref{lem:rowenergy}, this becomes
+\begin{equation}\label{eq:deficit}
+ \boxed{\ \sum_p(9-E_p)+2\sum_{i<j}(s_{ij}-6)^2=0.\ }
+\end{equation}
+Every term is nonnegative. Consequently every point has energy nine, and any two distinct block indices intersect in six points.
+
+\begin{proof}[Completion of the proof of Theorem~\ref{thm:rigidity}]
+A negative deviation would give energy five, so every row is nonnegative. Each has sum three and sum of squares nine. Since
+\[
+ \Bigl(\sum_q e_{pq}\Bigr)^2-\sum_q e_{pq}^{\,2}
+ =2\sum_{\{q,r\}}e_{pq}e_{pr}=0,
+\]
+at most one entry can be positive. There is therefore exactly one entry equal to three. Denote its column by $\sigma(p)$.
+
+The diagonal entry is zero, so $\sigma(p)\ne p$. Symmetry and uniqueness give $\sigma(\sigma(p))=p$. This proves~\eqref{eq:twin-codegree}. Finally, both twins have degree six and their codegree is six, so they occur in exactly the same blocks. The intersection assertion follows from~\eqref{eq:deficit}.
+\end{proof}
+
+\begin{corollary}[Zero block sums reverse weights on twins]\label{cor:twinbalance}
+Assign real weights $z_p$ to the points of an eleven-block $(22,12,3)$ cover. If every block has total weight zero, then $z_{\sigma(p)}=-z_p$ for each point $p$.
+\end{corollary}
+\begin{proof}
+Summing all block weights gives $6\sum_pz_p=0$. For a fixed point $p$, sum the weights of the blocks containing it and use~\eqref{eq:twin-codegree}:
+\[
+ 0=\sum_{i:p\in B_i}\sum_{q\in B_i}z_q
+ =3\bigl(z_p+z_{\sigma(p)}\bigr)+3\sum_qz_q.
+\]
+The final sum vanishes, proving the assertion.
+\end{proof}
+
+\begin{remark}\label{rem:unique}
+Theorem~\ref{thm:rigidity} determines the eleven-block $(22,12,3)$ covers up to isomorphism. Compressing twin pairs gives a symmetric $2$-$(11,6,3)$ design, whose complementary design is a $2$-$(11,5,2)$ biplane, and the biplane on eleven points is unique up to isomorphism~\cite{Hussain,Cameron}. Conversely, doubling every point of the complementary design of this biplane gives an eleven-block $(22,12,3)$ cover; this is the doubling construction of~\cite{GKP}. Indeed, a triple meeting only two twin pairs corresponds to a pair, which lies in three blocks, and a triple meeting three twin pairs corresponds to a $3$-set $S$ of the biplane; since two biplane blocks share exactly two points, at most one block contains $S$, and inclusion--exclusion shows that at least $11-3\cdot5+3\cdot2-1=1$ biplane block is disjoint from $S$. Since $C(22,12,3)=11$~\cite{LJCR}, the optimal $(22,12,3)$ cover is therefore unique up to isomorphism. We are not aware of a previous statement of this uniqueness.
+\end{remark}
+
+\section{Near-equality forces balanced components}\label{sec:components}
+From now on suppose that $\calT$ is a $(24,14,4)$ cover with nineteen indexed blocks. The elementary bounds in Corollary~\ref{cor:floors} give
+\[
+ d(p)\ge11,\qquad \lam(p,q)\ge6\quad(p\ne q),
+ \qquad \sum_p(d(p)-11)=2.
+\]
+Call a point \emph{low} if its degree is eleven, and \emph{high} otherwise. Write $L$ for the low points. There are at least twenty-two low points, and at least one high point.
+
+For distinct points define the nonnegative excess weights
+\[
+ w_{pq}=\lam(p,q)-6,\qquad w_{pp}=0.
+\]
+Equation~\eqref{eq:counts} gives the full weighted row sums
+\begin{equation}\label{eq:excess-row}
+ \sum_qw_{pq}=13d(p)-138.
+\end{equation}
+In particular, each low point has total excess weight five.
+
+\subsection{One identity describes all linear relations}
+Let $r_p\in\{0,1\}^{19}$ be the incidence vector of a low point $p$: its $i$th coordinate records whether $p\in B_i$. Join two low points whenever $w_{pq}>0$. The resulting graph records which low-point pairs have codegree above six.
+
+Some of a low point's five units of excess may go to high points. Define its unused internal excess by
+\[
+ \delta_p=5-\sum_{q\in L}w_{pq}\ge0.
+\]
+For arbitrary real coefficients $(a_p)_{p\in L}$, we have
+\begin{equation}\label{eq:incidence-identity}
+\boxed{\begin{aligned}
+ \left\|\sum_{p\in L}a_pr_p\right\|^2
+ ={}&6\left(\sum_{p\in L}a_p\right)^2
+       +\sum_{p\in L}\delta_pa_p^2\\
+ &+\sum_{\{p,q\}\subseteq L}w_{pq}(a_p+a_q)^2.
+\end{aligned}}
+\end{equation}
+To verify it, expand the left side using $\langle r_p,r_p\rangle=11$ and $\langle r_p,r_q\rangle=6+w_{pq}$ for $p\ne q$. On the right side, the edge-square terms contribute $\sum_{q\in L}w_{pq}$ to the coefficient of $a_p^2$; this combines with $\delta_p$ to give five. The remaining six comes from the first square. The cross terms agree as well.
+
+Define the incidence map
+\[
+ A:\RR^L\longrightarrow\RR^{19},\qquad
+ A(a)=\sum_{p\in L}a_pr_p.
+\]
+Call a connected component of the low-point graph \emph{balanced} if it is bipartite and all its vertices have $\delta_p=0$. For such a component, choose a bipartition $C^+,C^-$ and let $b_C=\one_{C^+}-\one_{C^-}\in\RR^L$ be its signed indicator vector.
+
+\begin{lemma}[The incidence relation space]\label{lem:relation-space}
+Every balanced component has equally large nonempty parts. The vectors $b_C$, one for each balanced component $C$, form a basis of $\ker A$. In particular,
+\[
+ \#\{\text{balanced components}\}=\dim\ker A\ge |L|-19\ge3.
+\]
+\end{lemma}
+\begin{proof}
+All terms on the right of~\eqref{eq:incidence-identity} are nonnegative. If $A(a)=0$, the first square gives $\sum_{p\in L}a_p=0$, and the other terms give
+\begin{equation}\label{eq:relation-rules}
+ \delta_p>0\ \Longrightarrow\ a_p=0,
+ \qquad w_{pq}>0\ \Longrightarrow\ a_q=-a_p.
+\end{equation}
+Thus coefficients reverse sign along edges. On a connected component, a nonzero coefficient propagates with the same absolute value to every vertex. An odd cycle would force $a_p=-a_p$ and hence $a_p=0$, so such a component must be bipartite. Every vertex must also have $\delta_p=0$. All other components have zero coefficients.
+
+In a balanced component, each vertex has weighted degree five within the component. Counting edge weight from its two sides gives
+\[
+ 5|C^+|=5|C^-|.
+\]
+The parts are nonempty because the weighted degree is positive, and they are equally large. In particular, the component has positive even size.
+
+Conversely, evaluate~\eqref{eq:incidence-identity} at $a=b_C$. The total coefficient sum is zero by equality of the part sizes. There is no unused excess on $C$, every positive-weight edge within $C$ joins opposite signs, and no edge joins $C$ to another low-point component. Every term vanishes, so $b_C\in\ker A$. Equivalently,
+\begin{equation}\label{eq:vector-balance}
+ \sum_{p\in C^+}r_p=\sum_{p\in C^-}r_p.
+\end{equation}
+Coordinate by coordinate, this says that every block is balanced:
+\begin{equation}\label{eq:component-balance}
+ |B_i\cap C^+|=|B_i\cap C^-|.
+\end{equation}
+
+The propagation rule~\eqref{eq:relation-rules} shows that any element of $\ker A$ is a linear combination of these signed vectors. Their supports are disjoint, so they are independent. Each already has total coefficient sum zero, so that condition imposes no further restriction. Finally, rank--nullity and $\operatorname{rank}A\le19$ give the stated bound.
+\end{proof}
+
+A point of a balanced component spends all five units of its full excess within that component. Its excess with any outside point is therefore zero, as is the excess between two points on the same side. Consequently
+\begin{equation}\label{eq:closure}
+ \lam(p,q)=6
+\end{equation}
+whenever $p$ lies in a balanced component and $q$ lies outside it, or whenever distinct $p,q$ lie on the same side of a component.
+
+\subsection{There is room for at most sixteen balanced points}
+Let $U$ be the union of all balanced components. Its size is even. Since the total degree excess is two, only two high-point patterns are possible.
+
+If one point has degree thirteen, the other twenty-three points are low. Its excess row sum is thirty-one by~\eqref{eq:excess-row}. None of this weight goes to $U$, by~\eqref{eq:closure}. A low point can receive at most five units, so at least seven low points lie outside $U$. Thus $|U|\le23-7=16$.
+
+Otherwise two points have degree twelve and the other twenty-two are low. Their combined excess row sum is thirty-six. Their mutual excess is at most six, since their codegree is at most twelve. This accounts for at most twelve units in the combined row sum. At least twenty-four units must therefore go to low points outside $U$. Each receives at most five, so at least five low points lie outside $U$. Hence $|U|\le17$, and evenness improves the bound to sixteen.
+
+\begin{proposition}\label{prop:components}
+A hypothetical nineteen-block cover has at least three balanced components, all of positive even size, with total size at most sixteen. Their equal parts satisfy blockwise balance~\eqref{eq:component-balance}, and their points satisfy the codegree rule~\eqref{eq:closure}.
+\end{proposition}
+
+\section{Excluding balanced quadruples}\label{sec:quadruple}
+A \emph{balanced quadruple} consists of four distinct low points $u,v,s,t$ such that every block satisfies
+\begin{equation}\label{eq:quad-balance}
+ \one_{u\in B}+\one_{v\in B}=\one_{s\in B}+\one_{t\in B}.
+\end{equation}
+A balanced component of size four supplies such a quadruple using its two parts. Two components of size two also supply one: put one point from each component on either side of~\eqref{eq:quad-balance}.
+
+\begin{proposition}\label{prop:noquad}
+A nineteen-block $(24,14,4)$ cover has no balanced quadruple.
+\end{proposition}
+We prove the proposition in three steps. The first produces two small completions, the second shows that they share the same twin pairs, and the third gives a neighborhood-count contradiction.
+
+\subsection{Four block classes and two completions}
+Multiply~\eqref{eq:quad-balance} by $\one_{u\in B}$ and sum over all blocks:
+\[
+ 11+\lam(u,v)=\lam(u,s)+\lam(u,t),
+ \qquad w_{us}+w_{ut}=5+w_{uv}.
+\]
+The full excess row at $u$ is five, so $w_{uv}+w_{us}+w_{ut}\le5$. Nonnegativity forces $w_{uv}=0$, and hence $\lam(u,v)=6$.
+
+Let $X$ be the twenty points outside the quadruple. Partition the blocks according to membership of $u,v$, and use the same symbols for their traces on $X$:
+\begin{center}
+\begin{tabular}{@{}lrrrr@{}}
+\toprule
+ & $\calH$ & $\calE$ & $\calF$ & $\calG$\\
+\midrule
+Membership of $u,v$ & both & $u$ only & $v$ only & neither\\
+Number of blocks & 6 & 5 & 5 & 3\\
+Size of a trace on $X$ & 10 & 12 & 12 & 14\\
+\bottomrule
+\end{tabular}
+\end{center}
+The numbers of blocks are $|\calH|=\lam(u,v)=6$, $|\calE|=|\calF|=11-6=5$, and $|\calG|=19-6-5-5=3$. All unions of these families retain their disjoint original index sets, even if traces coincide. The trace sizes follow from the balance equation: a block containing both $u,v$ also contains $s,t$; a block containing exactly one of $u,v$ contains exactly one of $s,t$; a block containing neither contains neither.
+
+The family $\calH$ covers every pair of $X$, by attaching $u,v$ to that pair. Similarly $\calH\cup\calE$ and $\calH\cup\calF$ each cover every triple of $X$, by attaching $u$ or $v$.
+
+For either $\calD=\calE$ or $\calD=\calF$, add two new points $a,b$ to each of the six blocks of $\calH$, and leave the five blocks of $\calD$ unchanged. The result is an eleven-block $(22,12,3)$ cover. Old triples are covered by $\calH\cup\calD$; triples containing exactly one new point are covered because $\calH$ covers pairs; triples containing both new points are covered because pair coverage also ensures that every old point occurs in $\calH$.
+
+Apply Theorem~\ref{thm:rigidity}. The new points occur together in precisely the six enlarged $\calH$-blocks, so they are twins. An old point $x$ is not their twin, and its codegree with $a$ is therefore three. That codegree is exactly $d_{\calH}(x)$. Its total degree in the completion is six, so $d_{\calD}(x)=3$ as well. Thus
+\begin{equation}\label{eq:trace-degrees}
+ d_{\calH}(x)=d_{\calE}(x)=d_{\calF}(x)=3\qquad(x\in X).
+\end{equation}
+All three degree identities have come from the completions; no separate regularity calculation for $\calH$ is needed.
+
+\subsection{The completions have the same twin pairs}
+The twin involution of either completion restricts to $X$, since the new points are twins of each other. For distinct old points,
+\begin{equation}\label{eq:completion-codegrees}
+ \lam_{\calH}(x,y)+\lam_{\calD}(x,y)=
+ \begin{cases}
+ 6,&x,y\text{ are twins in the completion},\\
+ 3,&\text{otherwise}.
+ \end{cases}
+\end{equation}
+Both summands are at most three by~\eqref{eq:trace-degrees}. Also $\lam_{\calH}(x,y)\ge1$ from pair coverage, and $\lam_{\calD}(x,y)\ge1$: each point occurs in three of the five $\calD$-blocks, so their sets of incident indices must intersect.
+
+It follows that $x,y$ are twins exactly when $\lam_{\calH}(x,y)=3$. In one direction, a total of six forces both summands to be three. In the other, an $\calH$-codegree of three makes the total at least four, so it cannot be the non-twin value three. This criterion depends only on $\calH$. Therefore the two completions have the same twin pairs. Every other distinct pair has $\calH$-codegree one or two.
+
+Let $\Gamma$ be the simple graph on $X$ in which distinct $x,y$ are adjacent when $\lam_{\calH}(x,y)=2$. This graph is six-regular. Indeed, the codegree row sum, including the diagonal, is $10\cdot3=30$. The diagonal and the twin contribute three each. The remaining eighteen entries are one or two and have sum twenty-four, so exactly six of them are two.
+
+\subsection{A neighborhood cannot fit in an omission class}
+For every old point, the four block classes and~\eqref{eq:trace-degrees} give
+\[
+ d_{\calT}(x)=9+d_{\calG}(x).
+\]
+Thus $2\le d_{\calG}(x)\le3$. The total $\calG$-degree is $3\cdot14=42$, so exactly two of the twenty points have $\calG$-degree three; the other eighteen have degree two. Call the latter points \emph{ordinary}.
+
+Color each ordinary point by the unique $\calG$-block omitting it. Every color class has size at most six, because that block contains fourteen of the twenty points. If ordinary $x,y$ are adjacent in $\Gamma$, then $\lam_{\calH}(x,y)=2$, and~\eqref{eq:completion-codegrees} gives
+\[
+ \lam_{\calE}(x,y)=\lam_{\calF}(x,y)=1.
+\]
+The full codegree is at least six, so $\lam_{\calG}(x,y)\ge2$. Each point occurs in exactly two $\calG$-blocks, so they occur in the same two and have the same color.
+
+The two nonordinary points together with their neighbors in $\Gamma$ occupy at most $2+6+6=14$ vertices. Choose a vertex outside that set. It and all six of its neighbors are ordinary and have the same color. This puts seven distinct points in a class of size at most six, a contradiction. Proposition~\ref{prop:noquad} follows.
+
+\section{Excluding the remaining components}\label{sec:remaining}
+We first record the elementary set-system obstruction that will end the proof.
+
+\begin{lemma}[Five triples on six positions]\label{lem:five-triples}
+There are no five three-element subsets of a six-element set such that every two have intersection size exactly one.
+\end{lemma}
+\begin{proof}
+No position can occur in three of the subsets: after removing that common position, the three remaining pairs would have to be disjoint, requiring six further positions. Thus each of the six positions occurs in at most two subsets. There are at most twelve incidences, whereas five triples require fifteen.
+\end{proof}
+
+\subsection{A two-point component and two larger components}
+Proposition~\ref{prop:noquad} excludes both a component of size four and two distinct components of size two. There is therefore at most one size-two component, and every other component has size at least six. Since there are at least three components with total size at most sixteen, some component must have size two: otherwise three components already contain at least eighteen points. There are exactly three components, since four would contain at least $2+6+6+6=20$ points. Their sizes, in increasing order, must therefore be
+\[
+ (2,6,6)\quad\text{or}\quad(2,6,8).
+\]
+There are exactly three balanced components, so Lemma~\ref{lem:relation-space} gives $|L|-19\le3$. Since $|L|\ge22$, we have $|L|=22$. The two high points therefore both have degree twelve, because the total degree excess is two.
+
+Let $\{p,q\}$ be that size-two component, and choose two other components $C,D$. Their equal parts satisfy
+\[
+ |C^+|=|C^-|\ge3,\qquad |D^+|=|D^-|\ge3.
+\]
+Blockwise balance implies that $p,q$ occur in exactly the same eleven blocks. Delete $p,q$ from those blocks and call the resulting family on twenty-two points $\calP$. It consists of eleven twelve-element blocks covering every triple: attach $p$ to the triple and use the original four-cover property. The remaining eight original blocks form a family $\calR$; these all avoid $p,q$.
+
+Theorem~\ref{thm:rigidity} applies to $\calP$. Assign weight $+1$ to $C^+$, $-1$ to $C^-$, and zero to all remaining points. Every $\calP$-block has weight zero by~\eqref{eq:component-balance}. Corollary~\ref{cor:twinbalance} therefore puts the $\calP$-twin of each point of $C^+$ in $C^-$. Likewise the twins of points in $D^+$ lie in $D^-$. In particular, no two points of $C^+\cup D^+$ are $\calP$-twins.
+
+\subsection{Subtracting the eleven-block cover}
+Choose five points $S\subseteq C^+\cup D^+$. This is possible because the union has at least six points. Also choose either of the two high points, denoted by $h$.
+
+All selected points are low. The high point is outside every balanced component, so~\eqref{eq:closure} applies to its codegrees with $S$. No two distinct selected points are $\calP$-twins, and $h$ is not the $\calP$-twin of a selected point because that twin lies in the opposite side of its component. The degrees and codegrees now follow by subtraction:
+\begin{center}
+\begin{tabular}{@{}lccc@{}}
+\toprule
+Quantity & Original $\calT$ & Eleven blocks $\calP$ & Eight blocks $\calR$\\
+\midrule
+Degree of $x\in S$ & 11 & 6 & 5\\
+Codegree of distinct $x,y\in S$ & 6 & 3 & 3\\
+Degree of $h$ & 12 & 6 & 6\\
+Codegree of $x\in S$ and $h$ & 6 & 3 & 3\\
+\bottomrule
+\end{tabular}
+\end{center}
+The full codegree six for two selected points follows because they are on the same side of a component or in different components.
+
+For each point $x$, let $M_x$ be the set of residual block indices omitting it. Inclusion--exclusion gives
+\[
+ |M_x|=3\quad(x\in S),\qquad |M_h|=2,
+\]
+\[
+ |M_x\cap M_y|=8-5-5+3=1\quad(x\ne y\text{ in }S),
+ \qquad |M_x\cap M_h|=8-5-6+3=0.
+\]
+Thus the five $M_x$, for $x\in S$, are triples on the same six indices outside $M_h$, and every two meet in exactly one index. This contradicts Lemma~\ref{lem:five-triples}.
+
+\begin{proof}[Conclusion of Theorem~\ref{thm:main}]
+Every hypothetical nineteen-block cover yields the balanced components of Proposition~\ref{prop:components}. Balanced quadruples are impossible by Section~\ref{sec:quadruple}, and the remaining component sizes have just led to a contradiction. Hence nineteen blocks do not suffice.
+
+The elementary degree bound $d(p)\ge11$ gives $14|I|\ge24\cdot11=264$, and hence $|I|\ge19$. Excluding equality proves $C(24,14,4)\ge20$.
+\end{proof}
+
+\begin{corollary}\label{cor:25}
+Every $(25,15,5)$ cover has at least thirty-four blocks. Thus $C(25,15,5)\ge34$.
+\end{corollary}
+\begin{proof}
+The derivative through any point is a $(24,14,4)$ cover, so every point has degree at least twenty. If the original cover has $b$ blocks, then
+\[
+ 15b=\sum_p d(p)\ge25\cdot20=500,
+ \qquad b\ge\left\lceil\frac{500}{15}\right\rceil=34.
+\]
+\end{proof}
+
+\section{Formalization}\label{sec:formalization}
+The ancillary files~\cite{Formalization} contain a formalization of Theorem~\ref{thm:main} and Corollary~\ref{cor:25} in Lean~4~\cite{Lean4} using Mathlib~\cite{Mathlib}. The finite-set statements are
+\begin{center}
+\code{Covering.covering_24_14_4}\\
+\code{Covering.covering_25_15_5}.
+\end{center}
+Their hypotheses require only the prescribed block sizes and coverage of every four- or five-element subset, respectively; the structural properties used in this paper are derived in the proofs, and the only axioms used are the standard ones of Lean and Mathlib. The formal proof follows the argument of this paper, with some differences in organization and in intermediate formulations. Its README lists the Lean declaration corresponding to each numbered result and explains how to build the project.
+
+\subsection{Use of AI tools}
+The mathematical arguments and Lean proofs were developed with substantial assistance from AI research agents in OpenAI Dots. The author selected the problem, directed the research, and prepared the manuscript. OpenAI Codex and Claude were used to revise the exposition and the Lean sources. The author takes responsibility for the final manuscript and its mathematical claims. At the time of writing, the proof has been checked in Lean but has not yet been independently reviewed by a human mathematician.
+
+\appendix
+\section{Elementary covering lemmas}\label{sec:small}
+This appendix proves the small covering bounds and the matching restriction used above. It is independent of the rigidity and component arguments.
+
+\subsection{The pair-cover bound}
+\begin{lemma}[Two-rectangle capacity]\label{lem:rectangle}
+Let $X,Y$ be disjoint nonempty sets of sizes $a,b$. Suppose two sets of size at most $k$ cover every cross-pair $\{x,y\}$, $x\in X$, $y\in Y$. Then at least one of
+\[
+ a+b\le k,\qquad 2a+b\le2k,\qquad a+2b\le2k
+\]
+holds.
+\end{lemma}
+\begin{proof}
+Call the two sets $A,B$. If both contain $X$, their intersections with $Y$ together cover $Y$, giving $2a+b\le |A|+|B|\le2k$. If neither contains $X$, a point of $X\setminus A$ forces $Y\subseteq B$, and a point of $X\setminus B$ forces $Y\subseteq A$. Also $X\subseteq A\cup B$, giving $a+2b\le2k$. In the remaining case exactly one, say $A$, contains $X$. A point of $X\setminus B$ forces $Y\subseteq A$, so $a+b\le k$.
+\end{proof}
+
+\begin{lemma}\label{lem:ten-grid}
+Three sets of size at most twelve cannot cover all cross-pairs between two disjoint ten-element sets.
+\end{lemma}
+\begin{proof}
+Every one of the twenty points must occur, but the total number of point occurrences is at most $36<40$. Some point therefore occurs in exactly one set, say $x\in X$ occurs only in $A$. Then $Y\subseteq A$, so $|A\cap X|\le2$. There are at least eight points of $X$ outside $A$. The other two sets must cover every cross-pair between these points and the ten points of $Y$. The three alternatives in Lemma~\ref{lem:rectangle} all fail: $8+10>12$, $2\cdot8+10>24$, and $8+2\cdot10>24$.
+\end{proof}
+
+\begin{lemma}[The pair-cover floor]\label{lem:pairfloor}
+A family of twelve-element subsets covering all pairs of a twenty-two-element set has at least six blocks.
+\end{lemma}
+\begin{proof}
+If a cover had at most five blocks, repeat a block until it has exactly five. Its total degree is $60<3\cdot22$, so some point $p$ has degree at most two. The blocks through $p$ must cover all twenty-two points between them, and one twelve-element block cannot do so. Hence $p$ has degree exactly two. Call its two blocks $A,B$. They satisfy $A\cup B=V$ and $|A\cap B|=2$.
+
+The sets $X=V\setminus A$ and $Y=V\setminus B$ are disjoint and both have size ten. Neither $A$ nor $B$ covers a cross-pair from $X$ to $Y$. The remaining three blocks would cover all these cross-pairs, contrary to Lemma~\ref{lem:ten-grid}.\qedhere
+\end{proof}
+
+\begin{corollary}[Degree and codegree lower bounds]\label{cor:floors}
+A $(23,13,3)$ cover has at least eleven blocks. In any $(24,14,4)$ cover, every point has degree at least eleven and every pair of distinct points has codegree at least six.
+\end{corollary}
+\begin{proof}
+In a $(23,13,3)$ cover, the derivative through any point is a $(22,12,2)$ cover, so every point has degree at least six. If there are $b$ blocks, $13b\ge23\cdot6=138$, and thus $b\ge11$. Taking one-point and two-point derivatives of a $(24,14,4)$ cover proves the other assertions.
+\end{proof}
+
+
+\subsection{The matching restriction}
+\begin{lemma}\label{lem:nineteen-grid}
+Three eleven-element subsets of a nineteen-element set cannot cover all cross-pairs of a partition into parts of sizes nine and ten.
+\end{lemma}
+\begin{proof}
+Suppose $R,Y$ are the parts and $D_1,D_2,D_3$ give such a cover. Add three fresh points $a,b,c$. The following five twelve-element sets would pair-cover the resulting twenty-two-element set:
+\[
+ R\cup\{a,b,c\},\qquad Y\cup\{b,c\},\qquad
+ D_1\cup\{a\},\quad D_2\cup\{a\},\quad D_3\cup\{a\}.
+\]
+Pairs internal to $R$ or $Y$ and pairs involving $b,c$ are covered by the first two blocks; cross-pairs are covered by the last three. Every point of $Y$ occurs in some $D_i$, because its cross-pairs with the nonempty set $R$ are covered, so pairs from $a$ to $Y$ are also covered. This contradicts Lemma~\ref{lem:pairfloor}.
+\end{proof}
+
+\begin{samepage}
+\begin{lemma}\label{lem:two-low}
+In a pair cover of twenty-one points by six eleven-element blocks, at most one point has degree two.
+\end{lemma}
+\begin{proof}
+Suppose distinct $p,q$ both have degree two. The two blocks through $p$ cover all points, so their intersection is exactly $\{p\}$. Label them $A,B$ with $q\in A$. The other block through $q$, denoted by $C$, satisfies $A\cap C=\{q\}$. Consequently there is a partition of the other nineteen points into sets $R,Y$ with $|R|=9$, $|Y|=10$, such that
+\[
+ A=\{p,q\}\cup R,\quad B=\{p\}\cup Y,\quad C=\{q\}\cup Y.
+\]
+The remaining three blocks avoid $p,q$ and must cover all cross-pairs between $R$ and $Y$, contrary to Lemma~\ref{lem:nineteen-grid}.
+\end{proof}
+\end{samepage}
+
+
+\begin{thebibliography}{99}
+\raggedright
+\bibitem{Cameron}
+P.~J. Cameron, Biplanes,
+\emph{Mathematische Zeitschrift} \textbf{131} (1973), 85--101.
+\href{https://doi.org/10.1007/BF01213827}{doi:10.1007/BF01213827}.
+
+\bibitem{Formalization}
+J. Chang, Lean formalization of $C(24,14,4)\ge20$ and $C(25,15,5)\ge34$,
+ancillary files to this article (2026).
+
+\bibitem{CoveringRepository}
+Covering Repository, construction records for $(24,14,4)$ and $(25,15,5)$,
+credited to A.~Ochmat (23~blocks, 20~July~2004) and F.~Atzeni
+(42~blocks, 6~September~2026), respectively; accessed 11~October~2026.
+\href{https://coveringrepository.com/download_system.aspx?id=134861}{23-block record};
+\href{https://coveringrepository.com/download_system.aspx?id=219128}{42-block record}.
+
+\bibitem{LJCR}
+D.~M. Gordon, La Jolla Coverings Repository (formerly the La Jolla Covering Repository), dataset, version~1.2, Zenodo, 2026.
+\href{https://doi.org/10.5281/zenodo.19735294}{doi:10.5281/zenodo.19735294}.
+
+\bibitem{GKP}
+D.~M. Gordon, G. Kuperberg and O. Patashnik, New constructions for covering designs,
+\emph{Journal of Combinatorial Designs} \textbf{3} (1995), no.~4, 269--284.
+\href{https://doi.org/10.1002/jcd.3180030404}{doi:10.1002/jcd.3180030404}.
+
+\bibitem{GordonStinson}
+D.~M. Gordon and D.~R. Stinson, Coverings, in C.~J. Colbourn and J.~H. Dinitz (eds.),
+\emph{Handbook of Combinatorial Designs}, 2nd ed., Chapman \& Hall/CRC, Boca Raton, 2007, 365--372.
+
+\bibitem{Horsley}
+D. Horsley, Generalising Fisher's inequality to coverings and packings,
+\emph{Combinatorica} \textbf{37} (2017), no.~4, 673--696.
+\href{https://doi.org/10.1007/s00493-016-3326-9}{doi:10.1007/s00493-016-3326-9}.
+
+\bibitem{HorsleySingh}
+D. Horsley and R. Singh, New lower bounds for $t$-coverings,
+\emph{Journal of Combinatorial Designs} \textbf{26} (2018), no.~8, 369--386.
+\href{https://doi.org/10.1002/jcd.21591}{doi:10.1002/jcd.21591}.
+
+\bibitem{Hussain}
+Q.~M. Hussain, On the totality of the solutions for the symmetrical incomplete block designs: $\lambda=2$, $k=5$ or $6$,
+\emph{Sankhy\=a} \textbf{7} (1945), 204--208.
+
+\bibitem{Krug}
+C. Krug, The covering number $C(12,6,4)$ is $41$, preprint (2026).
+\href{https://arxiv.org/abs/2607.23766}{arXiv:2607.23766}.
+
+\bibitem{Mathlib}
+The mathlib Community, The Lean mathematical library, in
+\emph{Proceedings of the 9th ACM SIGPLAN International Conference on Certified Programs and Proofs (CPP 2020)}, ACM, 2020, 367--381.
+\href{https://doi.org/10.1145/3372885.3373824}{doi:10.1145/3372885.3373824}.
+
+\bibitem{Mills}
+W.~H. Mills, Covering designs I: Coverings by a small number of subsets,
+\emph{Ars Combinatoria} \textbf{8} (1979), 199--315.
+
+\bibitem{MillsMullin}
+W.~H. Mills and R.~C. Mullin, Coverings and packings, in J.~H. Dinitz and D.~R. Stinson (eds.),
+\emph{Contemporary Design Theory: A Collection of Surveys}, Wiley, New York, 1992, 371--399.
+
+\bibitem{Lean4}
+L. de Moura and S. Ullrich, The Lean~4 theorem prover and programming language, in
+\emph{Automated Deduction -- CADE 28}, Lecture Notes in Computer Science \textbf{12699}, Springer, 2021, 625--635.
+\href{https://doi.org/10.1007/978-3-030-79876-5_37}{doi:10.1007/978-3-030-79876-5\_37}.
+
+\bibitem{Schonheim}
+J. Sch\"onheim, On coverings,
+\emph{Pacific Journal of Mathematics} \textbf{14} (1964), 1405--1411.
+\href{https://doi.org/10.2140/pjm.1964.14.1405}{doi:10.2140/pjm.1964.14.1405}.
+
+\bibitem{Sidorenko}
+A. Sidorenko, What we know and what we do not know about Tur\'an numbers,
+\emph{Graphs and Combinatorics} \textbf{11} (1995), 179--199.
+\href{https://doi.org/10.1007/BF01929486}{doi:10.1007/BF01929486}.
+
+\bibitem{Todorov}
+D.~T. Todorov, On some covering designs,
+\emph{Journal of Combinatorial Theory, Series A} \textbf{39} (1985), 83--101.
+\href{https://doi.org/10.1016/0097-3165(85)90084-6}{doi:10.1016/0097-3165(85)90084-6}.
+\end{thebibliography}
+\end{document}

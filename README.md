@@ -5,7 +5,7 @@ many tickets do you need so that, whatever is drawn, one of your tickets contain
 numbers?
 
 The best known answer is 23 tickets. For decades, the best proven lower bound has been 19.
-This repository contains a Lean proof that you need at least **20**.
+This repository contains a proof that you need at least **20**, as a paper and in Lean.
 
 In the language of combinatorics: a *(v, k, t) covering design* is a family of k-element
 subsets (*blocks*) of a v-element set such that every t-element subset lies in at least one
@@ -20,9 +20,12 @@ The second bound follows from the first by the Schönheim bound: ⌈25 · 20 / 1
 Applying it further also improves C(26,16,6) to 56, C(27,17,7) to 89 and C(28,18,8) to 139.
 Those three are not formalized here.
 
-I believe this repository contains a [proof](MAIN_PROOF/FinalCoveringBounds.lean) of both
-bounds. You can read it [as mathematics](PROOF.md) or explore it on the
-[companion site](https://jamesyc.com/covering/).
+- **The paper:** *A structural lower bound for C(24,14,4)*, [PDF](paper/c24-14-4.pdf) and
+  [LaTeX source](paper/c24-14-4.tex). It will be posted to arXiv.
+- **The Lean proof:** [`Covering/`](Covering/), with both theorems in
+  [`Covering/Main.lean`](Covering/Main.lean).
+- **The companion site:** <https://jamesyc.com/covering/> walks through the argument with
+  interactive figures.
 
 ## About this proof
 
@@ -36,7 +39,7 @@ The result in this repository emerged as an intermediate lemma. Following the lo
 
 The work was divided among mathematical research, Lean formalization, construction and computational search, adversarial review, and coordination. Different agents pursued different approaches, exchanged intermediate results, and checked one another’s arguments. A promising argument could be sent to another agent to look for missing assumptions or counterexamples, while a formalizer worked on translating it into Lean.
 
-The mathematics made the problem smaller before computation entered the picture. Counting bounds restricted point degrees and pair incidences. Gram-matrix and rank arguments forced additional structure. Rigidity results reduced the remaining possibilities to configurations that could be excluded by further counting arguments. The proof in this repository records the resulting chain of deductions; [PROOF.md](PROOF.md) presents that chain in more conventional mathematical language.
+The mathematics made the problem smaller before computation entered the picture. Counting bounds restricted point degrees and pair incidences. Gram-matrix and rank arguments forced additional structure. Rigidity results reduced the remaining possibilities to configurations that could be excluded by further counting arguments. The proof in this repository records the resulting chain of deductions; [the paper](paper/c24-14-4.pdf) presents it in conventional mathematical language.
 
 The distinction between a plausible argument and a verified theorem mattered throughout. An agent’s successful build was tracked separately from an independent rebuild. Review also had to check that the formal statement described an actual covering design, and that intermediate lemmas applied to the same blocks and points used by the final theorem. The verification section below describes the checks on the published result.
 
@@ -54,7 +57,7 @@ We have since moved from largely fixed assignments to a shared task pool. Agents
 
 This repository establishes lower bounds; it does not determine either covering number or resolve the original 41-block question. AI-agent review is also distinct from review by a human mathematician. The code, mathematical explanation and verification records are published so that others can inspect the argument and reproduce the checks.
 
-After the initial campaign, I rebuilt the proof from source, ported it to a newer Lean version, added the textbook `Finset` formulation, and packaged it for [Palomar](https://palomar-registry.org/entry?id=PALOMAR-2026-10-04-000003&version=1).
+After the initial campaign, I rebuilt the proof from source, ported it to a newer Lean version, added the textbook `Finset` formulation, and packaged it for [Palomar](https://palomar-registry.org/entry?id=PALOMAR-2026-10-04-000003&version=1). I then wrote the argument up as [a paper](paper/c24-14-4.pdf), which simplifies several steps, and reorganized the Lean proof to follow it, using OpenAI Codex and Claude to revise the exposition and the Lean sources.
 
 ## Why I think it's correct
 
@@ -80,7 +83,9 @@ theorem Covering.Palomar.covering_25_15_5_lower_bound (𝒯 : Finset (Finset (Fi
     34 ≤ 𝒯.card
 ```
 
-[`Solution.lean`](Solution.lean) proves exactly these declarations, and prints:
+[`Solution.lean`](Solution.lean) proves exactly these declarations from
+`Covering.covering_24_14_4` and `Covering.covering_25_15_5` in
+[`Covering/Main.lean`](Covering/Main.lean), and prints:
 
 ```text
 'Covering.Palomar.covering_24_14_4_lower_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
@@ -93,25 +98,24 @@ theorem Covering.Palomar.covering_25_15_5_lower_bound (𝒯 : Finset (Finset (Fi
   exactly the statements in `Challenge.lean`, and replays the proof through Lean's kernel and
   two independent kernels (NanoDa and con-ron). CI runs it on every push
   ([`scripts/verify-comparator.sh`](scripts/verify-comparator.sh)).
-- [Palomar](https://palomar-registry.org/) ran the same check independently and registered
-  the result as
+- [Palomar](https://palomar-registry.org/) checked and registered the earlier version of this
+  proof as
   [PALOMAR-2026-10-04-000003](https://palomar-registry.org/entry?id=PALOMAR-2026-10-04-000003&version=1),
-  pinned to commit `17bca00`.
-- The agents' proof uses a list-based model of a covering in which blocks may repeat
-  ([`Statements/Model.lean`](MAIN_PROOF/Statements/Model.lean)).
-  [`IndependentCheck.lean`](IndependentCheck.lean), written after the campaign, derives the
-  textbook `Finset` statements from it. If the list model meant something stronger than the
-  textbook definition, that derivation would fail.
-- Every module was rebuilt from source and re-checked with `leanchecker` on two Lean versions
-  ([`verification/`](verification/)).
+  pinned to commit `17bca00`. The statements are unchanged in this version; a new Palomar
+  version for the reorganized proof is pending.
+- The proof works with indexed families, so the same block may appear more than once
+  ([`Covering/Basic/Model.lean`](Covering/Basic/Model.lean)).
+  [`Covering/Finset.lean`](Covering/Finset.lean) derives the textbook `Finset` statements
+  from these. If the list model meant something stronger than the textbook definition, that
+  derivation would fail.
 
 ### What isn't established
 
 **No mathematician has reviewed this proof yet.** I have asked for a review. Reviews by agents
 during the campaign are recorded in its archives, but they are not human review.
 
-The Lean checks say that the theorem is proved, not that the [written proof](PROOF.md)
-explains it correctly. If you find a problem with the statement, the Lean or the prose,
+The Lean checks say that the theorem is proved, not that [the paper](paper/c24-14-4.pdf)
+explains it correctly. If you find a problem with the statement, the Lean or the paper,
 please open an issue.
 
 Neither covering number is determined. Whether C(24,14,4) is 20, 21, 22 or 23 is open, and
@@ -119,54 +123,84 @@ so is whether 41 blocks suffice for C(25,15,5).
 
 ## Navigating the proof
 
-The Lean code is 80 modules and about 8,800 lines, and it reads like what it is: the residue
-of a three-day agent campaign. File and declaration names such as `A19PhysicalCounts`,
-`GadgetData` or `NormalizedBridge20261003` come from that process.
+Read [the paper](paper/c24-14-4.pdf) first: it is about ten pages, self-contained, and every
+auxiliary bound is proved in its appendix. The Lean proof follows it.
 
-The argument itself is much shorter. [`PROOF.md`](PROOF.md) explains it in eight steps in
-standard terminology, links every step to the Lean declarations that prove it, and ends with
-a [glossary](PROOF.md#glossary-of-lean-names) of the agents' names.
+The folders follow the sections of the paper.
 
-The [companion site](https://jamesyc.com/covering/) walks through the same argument with
-interactive figures, and has an index of the main Lean results with their exact statements.
-Its explanations were written by AI from the Lean source and may contain mistakes.
-
-## Formalized results
-
-| Result | Explanation | Lean |
+| Folder | Contents | Paper |
 |---|---|---|
-| C(24,14,4) ≥ 20 | [Step 8](PROOF.md#step-8-conclusion) | [`c24_14_4_lower_twenty`](MAIN_PROOF/FinalCoveringBounds.lean#L21) |
-| C(25,15,5) ≥ 34 | [Step 8](PROOF.md#step-8-conclusion) | [`c25_15_5_lower_thirty_four`](MAIN_PROOF/FinalCoveringBounds.lean#L25) |
-| No 19-block (24,14,4) covering exists | [Steps 2–7](PROOF.md#step-2-degrees-and-excess-in-a-19-block-covering) | [`exact_nineteen_excluded`](MAIN_PROOF/FinalCoveringBounds.lean#L16) |
-| C(22,12,2) ≥ 6 | [Lemma 1](PROOF.md#step-1-counting-floors) | [`pair_cover_22_12_ge_six`](MAIN_PROOF/campaigns/async_goal/lean/recovered/PairLowerBoundRecoveredV4.lean#L131) |
-| A 19-block covering has ≥ 3 balanced components on ≤ 16 points | [Lemma 3](PROOF.md#step-3-a-rank-bound-forces-balanced-components) | [`component_count_from_physical`](MAIN_PROOF/A19WeightedFrontend.lean#L42), [`good_vertices_le_sixteen`](MAIN_PROOF/A19ComponentUnion.lean#L127) |
-| Regular 11-block (22,12,3) coverings are doubled 2-(11,6,3) designs | [Lemma 4](PROOF.md#step-4-the-rigidity-lemma) | [`regular22_physical_twins`](MAIN_PROOF/Regular22PhysicalRigidity.lean#L112) |
-| Either a balanced quadruple or exceptional components | [Lemma 6](PROOF.md#step-5-two-cases) | [`gadget_or_exceptional_components`](MAIN_PROOF/A19ComponentDichotomy.lean#L28) |
-| No balanced quadruple | [Proposition 7](PROOF.md#step-6-no-balanced-quadruple) | [`gadget_impossible`](MAIN_PROOF/GadgetExclusion.lean#L21) |
-| No exceptional components | [Proposition 8](PROOF.md#step-7-no-exceptional-components) | [`exception_impossible`](MAIN_PROOF/PhysicalExceptionExclusion.lean#L25) |
-| A cubic graph on 10 vertices with A² + A − 2I = J stays connected after deleting any two vertices | [Step 6](PROOF.md#step-6-no-balanced-quadruple) | [`cubic_ten_connected_delete_le_two`](MAIN_PROOF/SmallCutConnectivity.lean#L125) |
+| `Covering/Basic` | covering model, degrees, derivatives, list sums | §1 |
+| `Covering/PairCover` | pair-cover bound, degree floors, matching restriction | Appendix A |
+| `Covering/Rigidity` | eleven-block rigidity | §2 |
+| `Covering/Kernel` | kernels of signless forms and balanced components | §3 (linear algebra) |
+| `Covering/Components` | nineteen-block covers and their balanced components | §3 |
+| `Covering/Quadruple` | completions and the exclusion of balanced quadruples | §4 |
+| `Covering/Remaining` | the remaining component pattern | §5 |
+| `Covering/Bounds.lean`, `Finset.lean`, `Main.lean` | final bounds and finite-set statements | §5 |
+
+Blocks are lists and families are lists of blocks, so repeated blocks are
+allowed and counted with multiplicity, as in the paper.
+
+## Paper-to-Lean map
+
+| Paper | Declaration |
+|---|---|
+| Theorem 1.1 | `Covering.covering_24_14_4` |
+| Corollary 5.2 | `Covering.covering_25_15_5` |
+| Lemma A.1 | `Covering.CrossGrid.crossTwo_capacity_disjunction` |
+| Lemma A.2 | `Covering.CrossGrid.crossThree_impossible` |
+| Lemma A.3 | `Covering.PairLowerBound.pair_cover_22_12_ge_six` |
+| Corollary A.4 | `Covering.Floors.triple_cover_23_13_ge_eleven`, `Covering.Floors.pair_floor_six`, `Covering.Nineteen.point_floor_eleven` |
+| Lemma A.5 | `Covering.Matching.no_cross_cover_nineteen` |
+| Lemma A.6 | `Covering.Matching.no_two_low_in_pair_cover`, `Covering.Matching.codegree_two_matching` |
+| Theorem 2.1 | `Covering.Rigidity.eleven_block_regular`, `Covering.Rigidity.eleven_block_rigidity`, `Covering.Rigidity.eleven_block_intersections` |
+| Lemma 2.2 | `Covering.RowEnergy.energy_le_nine`, `Covering.RowEnergy.negative_energy` |
+| Equations (5)–(6) | `Covering.Rigidity.incidence_excess_variance`, `Covering.Rigidity.incidence_deficit_identity` |
+| Corollary 2.3 | `Covering.RowEnergy.twin_balance_from_pair_data` |
+| Equation (8) | `Covering.Nineteen.incidence_vector_energy` |
+| Lemma 3.1 | `WeightedKernelComponents.System.card_sub_rank_le_balanced_components`, `Covering.Nineteen.at_least_three_components` |
+| Equations (10)–(12) | `Covering.Nineteen.component_slot_balance_with_edges` |
+| Proposition 3.2 | `Covering.Nineteen.good_vertices_le_sixteen` |
+| Proposition 4.1 | `Covering.Quadruple.no_balanced_quadruple` |
+| Section 4.1 | `Covering.Quadruple.completion_from_rigidity` |
+| Section 4.2 | `Covering.Completions.completions_share_pairing` |
+| Section 4.3 | `Covering.Quadruple.local_seven_vs_six` |
+| Lemma 5.1 | `Covering.LinearTriples.five_triples_on_six_positions` |
+| Section 5.1 | `Covering.Components.remaining_component_sizes` |
+| Section 5 | `Covering.Remaining.remaining_components_impossible` |
+
+The formalization follows the paper's argument but not always its order. The
+formal proof first rules out the component pattern of Section 5, which leaves a
+balanced quadruple, and Section 4 then excludes that. The incidence identity (8)
+is proved as a separate lemma; the component argument itself uses the
+equivalent Gram-matrix form.
 
 ## Proof map
 
 ```mermaid
 flowchart TD
-  S1["Counting floors<br/>degrees ≥ 11, codegrees ≥ 6"]
-  S2["Degree patterns of a 19-block covering"]
-  S3["Gram-matrix rank<br/>balanced components"]
-  S4["Rigidity of regular (22,12,3) coverings"]
-  S5{"Balanced quadruple<br/>or exceptional components"}
-  S6["No balanced quadruple"]
-  S7["No exceptional components"]
-  S8["C(24,14,4) ≥ 20"]
-  S9["C(25,15,5) ≥ 34"]
-  S1 --> S2 --> S3 --> S5
-  S5 --> S6
-  S5 --> S7
-  S4 --> S6
-  S4 --> S7
-  S6 --> S8
-  S7 --> S8
-  S8 --> S9
+  A3["Lemma A.3<br/>C(22,12,2) ≥ 6"]
+  A4["Corollary A.4<br/>degrees ≥ 11, codegrees ≥ 6"]
+  A6["Lemma A.6<br/>codegree-2 pairs form a matching"]
+  T21["Theorem 2.1<br/>eleven-block rigidity"]
+  C23["Corollary 2.3<br/>zero block sums reverse twins"]
+  L31["Lemma 3.1<br/>the incidence relation space"]
+  P32["Proposition 3.2<br/>≥ 3 balanced components on ≤ 16 points"]
+  P41["Proposition 4.1<br/>no balanced quadruple"]
+  L51["Lemma 5.1<br/>five triples on six positions"]
+  S5["Section 5<br/>no remaining components"]
+  T11["Theorem 1.1<br/>C(24,14,4) ≥ 20"]
+  C52["Corollary 5.2<br/>C(25,15,5) ≥ 34"]
+  A3 --> A4 --> L31 --> P32
+  A3 --> A6 --> T21 --> C23
+  T21 --> P41
+  A4 --> P41
+  P32 --> S5
+  P41 --> S5
+  C23 --> S5
+  L51 --> S5
+  S5 --> T11 --> C52
 ```
 
 ## Where the old bound came from
@@ -204,22 +238,23 @@ does; it needs Linux with `bwrap`.
 
 ## Layout
 
-- [`PROOF.md`](PROOF.md): the argument in standard mathematical language.
+- [`paper/`](paper/): the paper, as PDF and LaTeX source.
+- [`Covering/`](Covering/): the Lean proof, one folder per section of the paper (see above).
 - `Challenge.lean`, `Solution.lean`, `comparator.json`, `formalization.yaml`: the
   [Palomar](https://palomar-registry.org/) submission. Submissions go through
   <https://submit.palomar-registry.org/>.
-- `IndependentCheck.lean`: the `Finset` restatement.
-- `MAIN_PROOF/`: the 80 Lean modules of the proof, in the layout the agents produced.
-  `SOURCE_ORDER.txt` lists them in dependency order, and `SOURCE_MANIFEST.json` records their
-  original hashes and import edges.
-- `verification/`: records of fresh builds and kernel re-checks.
+- `verification/`: records of fresh builds and kernel re-checks of the earlier version.
 
 ## History
 
-The tag [`original-2026-10-03`](../../tree/original-2026-10-03) holds the sources exactly as the
-agents produced them, pinned to Lean 4.34.1 and Mathlib `d13f23b7`. Since then the project has
-moved to Lean 4.35.0-rc3 (no source changes) and to Lean's module system, which added module
-headers and `public import`s to every file; no proof changed.
+- The tag [`original-2026-10-03`](../../tree/original-2026-10-03) holds the sources exactly as
+  the agents produced them, pinned to Lean 4.34.1 and Mathlib `d13f23b7`.
+- The tag [`agent-proof-v1`](../../tree/agent-proof-v1) is the last version with those agent
+  sources (80 modules, ported to Lean 4.35.0-rc3 and the module system), with the explanation
+  that preceded the paper. Palomar version 1 was registered from commit `17bca00`.
+- The current version replaces them with a reorganized proof that follows the paper, with
+  standard names and a simpler argument in several places. The theorem statements did not
+  change.
 
 ## Discussion
 
@@ -231,6 +266,8 @@ Apache-2.0. See [LICENSE](LICENSE).
 
 ## References
 
+- J. Chang, *A structural lower bound for C(24,14,4)*, [paper/c24-14-4.pdf](paper/c24-14-4.pdf)
+  (2026).
 - J. Schönheim, "[On coverings](https://doi.org/10.2140/pjm.1964.14.1405)", *Pacific J. Math.*
   **14** (1964), 1405–1411.
 - W. H. Mills, "Covering designs I: coverings by a small number of subsets", *Ars Combin.*
