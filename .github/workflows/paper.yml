@@ -37,7 +37,9 @@ jobs:
           ./tectonic --version
 
       - name: Build the PDF
-        run: ./tectonic --outdir build paper/c24-14-4.tex
+        run: |
+          mkdir -p build
+          ./tectonic --outdir build paper/c24-14-4.tex
 
       - uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
         with:
