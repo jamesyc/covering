@@ -1,5 +1,5 @@
 name = "covering"
-version = "1.0.0"
+version = "2.0.0"
 defaultTargets = ["Covering", "Challenge", "Solution"]
 
 [[require]]

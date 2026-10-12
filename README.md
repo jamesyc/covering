@@ -98,11 +98,10 @@ theorem Covering.Palomar.covering_25_15_5_lower_bound (𝒯 : Finset (Finset (Fi
   exactly the statements in `Challenge.lean`, and replays the proof through Lean's kernel and
   two independent kernels (NanoDa and con-ron). CI runs it on every push
   ([`scripts/verify-comparator.sh`](scripts/verify-comparator.sh)).
-- [Palomar](https://palomar-registry.org/) checked and registered the earlier version of this
-  proof as
-  [PALOMAR-2026-10-04-000003](https://palomar-registry.org/entry?id=PALOMAR-2026-10-04-000003&version=1),
-  pinned to commit `17bca00`. The statements are unchanged in this version; a new Palomar
-  version for the reorganized proof is pending.
+- [Palomar](https://palomar-registry.org/) checked and registered this proof as version 2 of
+  [PALOMAR-2026-10-04-000003](https://palomar-registry.org/entry?id=PALOMAR-2026-10-04-000003&version=2),
+  pinned to commit `401d986`. Version 1, pinned to commit `17bca00`, is the agents' original
+  proof; the theorem statements are the same in both.
 - The proof works with indexed families, so the same block may appear more than once
   ([`Covering/Basic/Model.lean`](Covering/Basic/Model.lean)).
   [`Covering/Finset.lean`](Covering/Finset.lean) derives the textbook `Finset` statements
@@ -134,7 +133,7 @@ The folders follow the sections of the paper.
 | `Covering/PairCover` | pair-cover bound, degree floors, matching restriction | Appendix A |
 | `Covering/Rigidity` | eleven-block rigidity | §2 |
 | `Covering/Kernel` | kernels of signless forms and balanced components | §3 (linear algebra) |
-| `Covering/Components` | nineteen-block covers and their balanced components | §3 |
+| `Covering/Components` | nineteen-block covers, their balanced components, and the component sizes left without a quadruple | §3, §5.1 |
 | `Covering/Quadruple` | completions and the exclusion of balanced quadruples | §4 |
 | `Covering/Remaining` | the remaining component pattern | §5 |
 | `Covering/Bounds.lean`, `Finset.lean`, `Main.lean` | final bounds and finite-set statements | §5 |
@@ -243,7 +242,8 @@ does; it needs Linux with `bwrap`.
 - `Challenge.lean`, `Solution.lean`, `comparator.json`, `formalization.yaml`: the
   [Palomar](https://palomar-registry.org/) submission. Submissions go through
   <https://submit.palomar-registry.org/>.
-- `verification/`: records of fresh builds and kernel re-checks of the earlier version.
+- [`verification/`](verification/): records of fresh builds and kernel re-checks of the agents'
+  proof (tag `agent-proof-v1`).
 
 ## History
 
@@ -254,7 +254,7 @@ does; it needs Linux with `bwrap`.
   that preceded the paper. Palomar version 1 was registered from commit `17bca00`.
 - The current version replaces them with a reorganized proof that follows the paper, with
   standard names and a simpler argument in several places. The theorem statements did not
-  change.
+  change. Palomar version 2 was registered from commit `401d986`.
 
 ## Discussion
 

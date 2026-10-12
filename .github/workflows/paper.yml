@@ -1,0 +1,46 @@
+name: Paper
+
+# Builds paper/c24-14-4.tex with Tectonic, the engine the committed PDF was made with, and keeps
+# the result as an artifact. After changing the TeX, download the artifact and commit it as
+# paper/c24-14-4.pdf.
+
+on:
+  push:
+    paths: ["paper/**", ".github/workflows/paper.yml"]
+  pull_request:
+    paths: ["paper/**", ".github/workflows/paper.yml"]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  TECTONIC_URL: https://github.com/tectonic-typesetting/tectonic/releases/download/tectonic%400.17.0/tectonic-0.17.0-x86_64-unknown-linux-musl.tar.gz
+  TECTONIC_SHA256: 8533d07f9ccbd7a65824b9e0459041bca34af1eb33daba48f59215593753a3b7
+
+jobs:
+  build:
+    name: Build the paper
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+
+      - name: Install Tectonic 0.17.0
+        run: |
+          curl -fsSL -o tectonic.tar.gz "$TECTONIC_URL"
+          echo "$TECTONIC_SHA256  tectonic.tar.gz" | sha256sum -c -
+          tar -xzf tectonic.tar.gz
+          ./tectonic --version
+
+      - name: Build the PDF
+        run: ./tectonic --outdir build paper/c24-14-4.tex
+
+      - uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
+        with:
+          name: c24-14-4
+          path: build/c24-14-4.pdf
+          if-no-files-found: error

@@ -1,0 +1,28 @@
+cff-version: 1.2.0
+message: "If you use this proof or its formalization, please cite the paper."
+title: "Lean formalization of C(24,14,4) ≥ 20 and C(25,15,5) ≥ 34"
+type: software
+authors:
+  - family-names: Chang
+    given-names: James
+repository-code: "https://github.com/jamesyc/covering"
+url: "https://jamesyc.com/covering/"
+license: Apache-2.0
+version: "2.0.0"
+date-released: "2026-10-12"
+keywords:
+  - covering designs
+  - covering numbers
+  - Turán numbers
+  - Lean 4
+  - formalization
+preferred-citation:
+  type: article
+  title: "A structural lower bound for C(24,14,4)"
+  authors:
+    - family-names: Chang
+      given-names: James
+  year: 2026
+  month: 10
+  url: "https://github.com/jamesyc/covering/blob/main/paper/c24-14-4.pdf"
+  notes: "Preprint, to be posted to arXiv."

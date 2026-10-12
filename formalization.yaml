@@ -63,12 +63,12 @@ sources:
     note: >-
       Determines C(v,k,2) when it is small. In particular C(v,k,2) = 6 for 9/5 < v/k <= 2, so
       C(22,12,2) = 6, the value the previous bounds 19 and 32 are derived from.
-  - title: "La Jolla Covering Repository"
+  - title: "La Jolla Coverings Repository (formerly the La Jolla Covering Repository)"
     authors:
       - "Daniel M. Gordon"
-    id: "https://doi.org/10.5281/zenodo.10779736"
+    id: "https://doi.org/10.5281/zenodo.19735294"
     type: database
-    location: "https://dmgordon.org/covering-designs/"
+    location: "Zenodo dataset, version 1.2 (2026); https://dmgordon.org/covering-designs/"
     relationship: background
     note: >-
       Source of the previously tabulated bounds 19 <= C(24,14,4) <= 23 and 32 <= C(25,15,5). Its
@@ -98,40 +98,15 @@ status:
 automation:
   methods:
     - method: agent
-      models: []
       framework: "OpenAI Dots"
       tool_setup: >-
-        A multi-agent research campaign in an OpenAI Dots shared workspace, with separate roles for
-        Lean formalization, mathematical research, construction search, adversarial review and
-        coordination. The agents wrote the mathematical argument and the first Lean proof (80
-        modules, kept at tag agent-proof-v1). The underlying model names are not recorded in the
-        campaign files.
-      cost:
-        wall_time: "about 3 days (1-3 October 2026)"
-        spend_usd: "0 (OpenAI Dots usage was free at the time)"
-        hardware: "OpenAI Dots cloud workspace"
-      prompting_notes: >-
-        The campaign's goal was a covering of all 5-subsets of a 25-set by at most 41 15-subsets.
-        That goal was not reached. The agents reduced it to a 24-point problem, and the bound
-        C(24,14,4) >= 20 came out of that reduction. Agents were told to keep accepted Lean
-        foundations separate from experimental work and to label each claim's evidence.
+        A multi-agent research campaign developed the mathematical argument and the first Lean
+        proof, kept at tag agent-proof-v1.
     - method: agent
-      models: ["Claude Opus 5.5"]
-      framework: "Claude Code"
+      framework: "OpenAI Codex and Claude Code"
       tool_setup: >-
-        After the campaign: fresh rebuilds and kernel re-checks, the port from Lean 4.34.1 to
-        4.35.0-rc3 and to the module system, and the Palomar Challenge, Solution and metadata.
-        OpenAI Codex and Claude were later used to revise the paper's exposition and to
-        reorganize the Lean sources to follow it.
-      cost:
-        wall_time: "about 3 hours"
-        spend_usd: "not tracked"
-        hardware: "local machine (Apple Silicon Mac)"
-      prompting_notes: "n/a"
-  spend_usd: "0 for the OpenAI Dots campaign; Claude Code packaging not tracked"
-  notes: >-
-    James Chang ran the OpenAI Dots campaign and directed the later packaging. The mathematical
-    argument and the Lean proof were written by AI agents, not by a person.
+        Used to port and package the proof, to revise the paper's exposition, and to reorganize
+        the Lean sources to follow the paper.
 
 fidelity:
   divergences: >-
