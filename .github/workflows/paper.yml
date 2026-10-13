@@ -2,7 +2,8 @@ name: Paper
 
 # Builds paper/c24-14-4.tex with Tectonic, the engine the committed PDF was made with, and keeps
 # the result as an artifact. After changing the TeX, download the artifact and commit it as
-# paper/c24-14-4.pdf.
+# paper/c24-14-4.pdf. A second job compiles it with pdfLaTeX on TeX Live 2025, as arXiv does, and
+# fails on undefined references.
 
 on:
   push:
@@ -44,5 +45,28 @@ jobs:
       - uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
         with:
           name: c24-14-4
+          path: build/c24-14-4.pdf
+          if-no-files-found: error
+
+  pdflatex:
+    name: Compile with pdfLaTeX, as arXiv does
+    runs-on: ubuntu-latest
+    container: texlive/texlive:TL2025-historic@sha256:7056390eac37715fd3e01875037ceb4016cb17d44c611f7bbbfa7a012007979f
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+
+      - name: Compile twice and check references
+        run: |
+          mkdir -p build
+          for pass in 1 2; do
+            pdflatex -interaction=nonstopmode -halt-on-error -output-directory build paper/c24-14-4.tex > /dev/null
+          done
+          grep -E "Overfull|Underfull" build/c24-14-4.log || true
+          if grep -E "undefined|Rerun to get" build/c24-14-4.log; then exit 1; fi
+          grep -E "^Output written" build/c24-14-4.log
+
+      - uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
+        with:
+          name: c24-14-4-pdflatex
           path: build/c24-14-4.pdf
           if-no-files-found: error
